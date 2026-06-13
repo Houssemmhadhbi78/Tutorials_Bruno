@@ -1,0 +1,27 @@
+meta {
+  name: Get All Posts
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/posts
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+}
+
+docs {
+  Retrieves the full list of posts from JSONPlaceholder.
+
+  Expected response: 200 OK with an array of 100 post objects.
+
+  Each post object contains:
+  - id      : unique identifier
+  - userId  : ID of the author
+  - title   : title of the post
+  - body    : content of the post
+}
