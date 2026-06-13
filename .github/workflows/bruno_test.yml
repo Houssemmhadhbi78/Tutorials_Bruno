@@ -16,11 +16,11 @@ jobs:
     steps:
       # Checkout the repository
       - name: Checkout Code from the repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       # Setting up Node.js version
       - name: Set up Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: '24' 
           
@@ -32,7 +32,7 @@ jobs:
       - name: Run Bruno Tests
         run: |
           cd HTMLReporter
-          bru run --reporter-html ../HTMLReporter/Results.html
+          bru run --env QA --reporter-html ../HTMLReporter/Results.html
           
       # Upload the html test report as an artifact
       - name: Upload Test Report in artifact location
