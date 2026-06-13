@@ -1,0 +1,33 @@
+meta {
+  name: Create Post
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{baseUrl}}/posts
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+  Accept: application/json
+}
+
+body:json {
+  {
+    "title": "My First Bruno Tutorial",
+    "body": "Bruno is a fast and Git-friendly open-source API client.",
+    "userId": 1
+  }
+}
+
+docs {
+  Creates a new post resource.
+
+  JSONPlaceholder does not persist data, but it simulates a 201 Created response
+  and returns the new resource with a generated `id`.
+
+  Expected response: 201 Created with the created post object (id: 101).
+}
