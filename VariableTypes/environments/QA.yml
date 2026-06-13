@@ -1,0 +1,4 @@
+name: QA
+variables:
+  - name: baseUrl
+    value: https://reqres.in

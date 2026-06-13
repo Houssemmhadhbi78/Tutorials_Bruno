@@ -1,0 +1,42 @@
+info:
+  name: CreatePostMutation
+  type: graphql
+  seq: 1
+
+graphql:
+  method: POST
+  url: http://localhost:3000/
+  body:
+    query: |
+      mutation CreatePost($title: String!, $views: Int!, $user_id: ID!) {
+        createPost(title: $title, views: $views, user_id: $user_id) {
+          id
+          title
+          views
+          user_id
+        }
+      }
+    variables: |-
+      {
+        "title": "title4",
+        "views": 4,
+        "user_id": "100"
+      }
+  auth: inherit
+
+runtime:
+  actions:
+    - type: set-variable
+      phase: after-response
+      selector:
+        expression: res.body.data.createPost.id
+        method: jsonq
+      variable:
+        name: idValue
+        scope: runtime
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

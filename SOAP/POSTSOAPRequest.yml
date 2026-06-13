@@ -1,0 +1,29 @@
+info:
+  name: POSTSOAPRequest
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: https://www.w3schools.com/xml/tempconvert.asmx
+  headers:
+    - name: Content-Type
+      value: text/xml
+  body:
+    type: xml
+    data: |-
+      <?xml version="1.0" encoding="utf-8"?>
+      <soap12:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://www.w3.org/2003/05/soap-envelope">
+        <soap12:Body>
+          <FahrenheitToCelsius xmlns="https://www.w3schools.com/xml/">
+            <Fahrenheit>60</Fahrenheit>
+          </FahrenheitToCelsius>
+        </soap12:Body>
+      </soap12:Envelope>
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

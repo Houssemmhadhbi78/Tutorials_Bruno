@@ -1,0 +1,22 @@
+info:
+  name: UrlEncoded
+  type: http
+  seq: 3
+
+http:
+  method: POST
+  url: https://www.postman-echo.com/post
+  body:
+    type: form-urlencoded
+    data:
+      - name: foo1
+        value: bar1
+      - name: bar2
+        value: bar2
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

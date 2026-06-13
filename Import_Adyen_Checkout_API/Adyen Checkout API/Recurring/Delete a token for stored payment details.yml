@@ -1,0 +1,113 @@
+info:
+  name: Delete a token for stored payment details
+  type: http
+  seq: 2
+  tags:
+    - Recurring
+
+http:
+  method: DELETE
+  url: "{{baseUrl}}/storedPaymentMethods/:recurringId"
+  params:
+    - name: recurringId
+      value: ""
+      type: path
+      description: The unique identifier of the token.
+    - name: shopperReference
+      value: ""
+      type: query
+      description: |-
+        Your reference to uniquely identify this shopper, for example user ID or account ID. Minimum length: 3 characters.
+        > Your reference must not include personally identifiable information (PII), for example name or email address.
+    - name: merchantAccount
+      value: ""
+      type: query
+      description: Your merchant account.
+  auth:
+    type: basic
+    username: "{{username}}"
+    password: "{{password}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: 200 Response
+    description: OK - the request has succeeded.
+    request:
+      url: "{{baseUrl}}/storedPaymentMethods/:recurringId"
+      method: DELETE
+      params:
+        - name: recurringId
+          value: ""
+          type: path
+          description: The unique identifier of the token.
+        - name: shopperReference
+          value: ""
+          type: query
+          description: |-
+            Your reference to uniquely identify this shopper, for example user ID or account ID. Minimum length: 3 characters.
+            > Your reference must not include personally identifiable information (PII), for example name or email address.
+        - name: merchantAccount
+          value: ""
+          type: query
+          description: Your merchant account.
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "brand": "",
+            "expiryMonth": "",
+            "expiryYear": "",
+            "externalResponseCode": "",
+            "externalTokenReference": "",
+            "holderName": "",
+            "iban": "",
+            "id": "",
+            "issuerName": "",
+            "lastFour": "",
+            "name": "",
+            "networkTxReference": "",
+            "ownerName": "",
+            "shopperEmail": "",
+            "shopperReference": "",
+            "supportedRecurringProcessingModels": [],
+            "type": ""
+          }
+  - name: 204 Response
+    description: No Content - the request has been successfully processed, but there is no additional content.
+    request:
+      url: "{{baseUrl}}/storedPaymentMethods/:recurringId"
+      method: DELETE
+      params:
+        - name: recurringId
+          value: ""
+          type: path
+          description: The unique identifier of the token.
+        - name: shopperReference
+          value: ""
+          type: query
+          description: |-
+            Your reference to uniquely identify this shopper, for example user ID or account ID. Minimum length: 3 characters.
+            > Your reference must not include personally identifiable information (PII), for example name or email address.
+        - name: merchantAccount
+          value: ""
+          type: query
+          description: Your merchant account.
+    response:
+      status: 204
+      statusText: No Content
+      body:
+        type: text
+        data: ""
+
+docs: Deletes the token identified in the path. The token can no longer be used with payment requests.

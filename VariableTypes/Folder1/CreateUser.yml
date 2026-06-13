@@ -1,0 +1,82 @@
+info:
+  name: CreateUser
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{baseUrl}}/api/users"
+  headers:
+    - name: x-api-key
+      value: reqres_1f5c662008d74ffc93882dd86bcbe461
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "name": "{{nameValue}}",
+          "job": "Leader" 
+        }
+  auth: inherit
+
+runtime:
+  variables:
+    - name: requesVar1
+      value: value of reques1
+    - name: requesVar2
+      value: value of reques2
+  scripts:
+    - type: after-response
+      code: |-
+        // let name = bru.getCollectionVar("nameValue");
+        // console.log(name);
+        // let environmentName = bru.getEnvName();
+        // console.log(environmentName);
+        // let baseUrlValue = bru.getEnvVar("baseUrl");
+        // console.log(baseUrlValue);
+        // let folderVariableValue = bru.getFolderVar("folderVariable01");
+        // console.log(folderVariableValue);
+        // let globalVariableValue = bru.getGlobalEnvVar("baseUrlGlobal");
+        // console.log(globalVariableValue);
+        // let requestVarValue = bru.getRequestVar("requesVar1");
+        // console.log(requestVarValue);
+        let processVarValue = bru.getProcessEnv("API_KEY");
+        console.log(processVarValue);
+    - type: tests
+      code: |-
+        test("status code test",function(){
+          expect(res.getStatus()).to.equal(201);
+        });
+
+        test("name data type test",function(){
+          expect(res.getBody().name).to.be.a('string');
+        });
+
+        test("name value test",function(){
+          expect(res.getBody().name).to.equal("Mhadhbi");
+        });
+
+        test("status text check test",function(){
+          expect(res.statusText).to.equal("Created");
+        });
+
+        test("header value test", function() { 
+          expect(res.headers.connection).to.exist; 
+        });
+  assertions:
+    - expression: res.status
+      operator: eq
+      value: "201"
+    - expression: res.body.name
+      operator: eq
+      value: Mhadhbi
+    - expression: res.body.job
+      operator: eq
+      value: QA tester
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

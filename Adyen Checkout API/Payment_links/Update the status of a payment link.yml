@@ -1,0 +1,227 @@
+info:
+  name: Update the status of a payment link
+  type: http
+  seq: 3
+  tags:
+    - Payment_links
+
+http:
+  method: PATCH
+  url: "{{baseUrl}}/paymentLinks/:linkId"
+  params:
+    - name: linkId
+      value: ""
+      type: path
+      description: Unique identifier of the payment link.
+  body:
+    type: json
+    data: |-
+      {
+        "status": "expired"
+      }
+  auth:
+    type: basic
+    username: "{{username}}"
+    password: "{{password}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Example response for request 'basic'
+    request:
+      url: "{{baseUrl}}/paymentLinks/:linkId"
+      method: PATCH
+      params:
+        - name: linkId
+          value: ""
+          type: path
+          description: Unique identifier of the payment link.
+      body:
+        type: json
+        data: |-
+          {
+            "status": "expired"
+          }
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "amount": {
+              "currency": "EUR",
+              "value": 8700
+            },
+            "countryCode": "NL",
+            "expiresAt": "2021-04-08T14:06:39Z",
+            "id": "PL61C53A8B97E6915A",
+            "merchantAccount": "YOUR_MERCHANT_ACCOUNT",
+            "reference": "shopper-reference-ekvL83",
+            "shopperLocale": "hu-HU",
+            "shopperReference": "shopper-reference-LZfdWZ",
+            "status": "expired",
+            "url": "https://test.adyen.link/PL61C53A8B97E6915A"
+          }
+  - name: Response code 400. Bad request. (Update the status of a payment link)
+    request:
+      url: "{{baseUrl}}/paymentLinks/:linkId"
+      method: PATCH
+      params:
+        - name: linkId
+          value: ""
+          type: path
+          description: Unique identifier of the payment link.
+      body:
+        type: json
+        data: |-
+          {
+            "status": "expired"
+          }
+    response:
+      status: 400
+      statusText: Bad Request
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "errorCode": "702",
+            "errorType": "validation",
+            "message": "Unexpected input: \", expected: }",
+            "status": 400
+          }
+  - name: Response code 401. Unauthorized. (Update the status of a payment link)
+    request:
+      url: "{{baseUrl}}/paymentLinks/:linkId"
+      method: PATCH
+      params:
+        - name: linkId
+          value: ""
+          type: path
+          description: Unique identifier of the payment link.
+      body:
+        type: json
+        data: |-
+          {
+            "status": "expired"
+          }
+    response:
+      status: 401
+      statusText: Unauthorized
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "errorCode": "000",
+            "errorType": "security",
+            "message": "HTTP Status Response - Unauthorized",
+            "status": 401
+          }
+  - name: Response code 403. Forbidden. (Update the status of a payment link)
+    request:
+      url: "{{baseUrl}}/paymentLinks/:linkId"
+      method: PATCH
+      params:
+        - name: linkId
+          value: ""
+          type: path
+          description: Unique identifier of the payment link.
+      body:
+        type: json
+        data: |-
+          {
+            "status": "expired"
+          }
+    response:
+      status: 403
+      statusText: Forbidden
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "errorCode": "901",
+            "errorType": "security",
+            "message": "Invalid Merchant Account",
+            "pspReference": "881611827877203B",
+            "status": 403
+          }
+  - name: Response code 422. Unprocessable entity. (Update the status of a payment link)
+    request:
+      url: "{{baseUrl}}/paymentLinks/:linkId"
+      method: PATCH
+      params:
+        - name: linkId
+          value: ""
+          type: path
+          description: Unique identifier of the payment link.
+      body:
+        type: json
+        data: |-
+          {
+            "status": "expired"
+          }
+    response:
+      status: 422
+      statusText: Unprocessable Entity
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "errorCode": "14_030",
+            "errorType": "validation",
+            "message": "Return URL is missing.",
+            "pspReference": "8816118280275544",
+            "status": 422
+          }
+  - name: Response code 500. Internal server error. (Update the status of a payment link)
+    request:
+      url: "{{baseUrl}}/paymentLinks/:linkId"
+      method: PATCH
+      params:
+        - name: linkId
+          value: ""
+          type: path
+          description: Unique identifier of the payment link.
+      body:
+        type: json
+        data: |-
+          {
+            "status": "expired"
+          }
+    response:
+      status: 500
+      statusText: Internal Server Error
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "errorCode": "905",
+            "errorType": "configuration",
+            "message": "Payment details are not supported",
+            "pspReference": "8516091485743033",
+            "status": 500
+          }
+
+docs: Updates the status of a payment link. Use this endpoint to [force the expiry of a payment link](https://docs.adyen.com/online-payments/pay-by-link#update-payment-link-status).

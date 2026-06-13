@@ -1,0 +1,32 @@
+meta {
+  name: Read All User
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{Base_Url}}/api/users
+  body: none
+  auth: apikey
+}
+
+headers {
+  x-api-key: {{API_Reqres_Global}}
+}
+
+auth:apikey {
+  key: x-api-key
+  value: reqres_1f5c662008d74ffc93882dd86bcbe461
+  placement: header
+}
+
+script:post-response {
+  let multiplay =(a,b) => console.log(a*b);
+  let add =(a,b) => console.log(a+b);
+  
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

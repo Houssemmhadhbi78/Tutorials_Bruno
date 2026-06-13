@@ -1,0 +1,32 @@
+info:
+  name: UpdateCreatedPostMutation
+  type: graphql
+  seq: 3
+
+graphql:
+  method: POST
+  url: http://localhost:3000/
+  body:
+    query: |-
+      mutation UpdatePost($id: ID!, $title: String!, $views: Int!, $user_id: ID!) {
+        updatePost(id: $id, title: $title, views: $views, user_id: $user_id) {
+          id
+          title
+          views
+          user_id
+        }
+      }
+    variables: |-
+      {
+        "id":"{{idValue}}",
+        "title":"title10",
+        "views":500,
+        "user_id":111
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

@@ -1,0 +1,22 @@
+info:
+  name: Delete Created Post
+  type: http
+  seq: 4
+
+http:
+  method: DELETE
+  url: http://localhost:3000/posts/{{postId}}
+  auth: inherit
+
+runtime:
+  scripts:
+    - type: after-response
+      code: |-
+        //To stop execution of runner
+        bru.setNextRequest(null);
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

@@ -1,0 +1,6 @@
+name: Auth TEST Env
+variables:
+  - name: passwordEnvValue
+    value: "{{process.env['TEST.PASSWORD']}}"
+  - secret: true
+    name: passwordEnv1Value

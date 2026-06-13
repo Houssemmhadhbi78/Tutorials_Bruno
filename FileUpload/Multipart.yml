@@ -1,0 +1,22 @@
+info:
+  name: Multipart
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: https://www.postman-echo.com/post
+  body:
+    type: multipart-form
+    data:
+      - name: file
+        type: file
+        value:
+          - image1.jpg
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

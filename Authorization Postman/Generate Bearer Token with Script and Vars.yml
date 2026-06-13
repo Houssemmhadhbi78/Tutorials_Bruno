@@ -1,0 +1,46 @@
+info:
+  name: Generate Bearer Token with Script and Vars
+  type: http
+  seq: 7
+
+http:
+  method: POST
+  url: https://airportgap.com/api/tokens
+  body:
+    type: json
+    data: |-
+      {
+        "email":"{{emailValue}}",
+        "password":"{{passwordValue}}"
+      }
+
+runtime:
+  variables:
+    - name: emailValue
+      value: houssem.mhadhbi@etik.com
+    - name: passwordValue
+      value: 123Houssem&&
+  scripts:
+    - type: before-request
+      code: |-
+        req.setBody({
+        	"email":"{{emailValue}}",
+        	"password":"{{passwordValue}}"
+        });
+    - type: after-response
+      code: bru.setVar("tokenValueScript",res.body.token);
+    - type: tests
+      code: |-
+        test("response time test",function(){
+          expect(res.getResponseTime()).to.lte(1000);
+        });
+  assertions:
+    - expression: res.responseTime
+      operator: lte
+      value: "1000"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

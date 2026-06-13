@@ -1,0 +1,20 @@
+info:
+  name: Get Created Post After Update
+  type: http
+  seq: 5
+
+http:
+  method: GET
+  url: http://localhost:3000/posts/{{postId}}
+  auth: inherit
+
+runtime:
+  scripts:
+    - type: after-response
+      code: bru.setNextRequest("Delete Created Post");
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

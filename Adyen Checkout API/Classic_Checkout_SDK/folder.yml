@@ -1,0 +1,7 @@
+info:
+  name: Classic_Checkout_SDK
+  type: folder
+  seq: 1
+
+request:
+  auth: inherit

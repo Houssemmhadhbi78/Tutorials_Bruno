@@ -1,0 +1,29 @@
+info:
+  name: DeleteCreatedPostMutation
+  type: graphql
+  seq: 4
+
+graphql:
+  method: POST
+  url: http://localhost:3000/
+  body:
+    query: |-
+      mutation DeletePost($id: ID!){
+        removePost(id: $id) {
+          id
+          title
+          views
+          user_id
+        }
+      }
+    variables: |-
+      {
+        "id":"{{idValue}}"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

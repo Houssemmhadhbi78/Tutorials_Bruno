@@ -1,0 +1,36 @@
+info:
+  name: Create Post
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: http://localhost:3000/posts
+  body:
+    type: json
+    data: |2
+        {
+          "title": "json-server",
+          "author": "typicode"
+        }
+  auth: inherit
+
+runtime:
+  scripts:
+    - type: after-response
+      code: bru.setNextRequest("Get Created Post");
+  actions:
+    - type: set-variable
+      phase: after-response
+      selector:
+        expression: res.body.id
+        method: jsonq
+      variable:
+        name: postId
+        scope: runtime
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

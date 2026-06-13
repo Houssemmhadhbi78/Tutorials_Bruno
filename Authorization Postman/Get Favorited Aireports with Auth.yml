@@ -1,0 +1,17 @@
+info:
+  name: Get Favorited Aireports with Auth
+  type: http
+  seq: 3
+
+http:
+  method: GET
+  url: https://airportgap.com/api/favorites
+  auth:
+    type: bearer
+    token: "{{tokenValue}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

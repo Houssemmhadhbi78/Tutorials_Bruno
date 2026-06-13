@@ -1,0 +1,4 @@
+name: baseUrlTDD
+variables:
+  - name: baseUrlTDD
+    value: https://reqres.in

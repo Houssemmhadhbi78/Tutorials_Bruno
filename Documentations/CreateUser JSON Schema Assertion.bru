@@ -1,0 +1,93 @@
+meta {
+  name: CreateUser JSON Schema Assertion
+  type: http
+  seq: 11
+}
+
+post {
+  url: {{baseUrl}}/users
+  body: json
+  auth: inherit
+}
+
+headers {
+  x-api-key: reqres_1f5c662008d74ffc93882dd86bcbe461
+  Content-Type: application/json
+  headerKey1: headerValue1
+  headerKey2: headerValue2
+}
+
+body:json {
+  {
+    "name": "Mhadhbi",
+      "job": "QA tester" 
+    }
+}
+
+assert {
+  res.status: eq 201
+  res.body.name: eq Mhadhbi
+  res.body.job: eq QA tester
+}
+
+script:pre-request {
+  const headerValue1=req.getHeader("headerKey1"); 
+  console.log("headerValue1 is:",headerValue1); 
+  const headerValue2=req.getHeader("headerKey2"); 
+  console.log("headerValue2 is:",headerValue2); 
+  const headerValues=req.getHeaders(); 
+  console.log("headerValues are:",headerValues);
+}
+
+script:post-response {
+  const headerValue1=res.getHeader("connection");
+  console.log("headerValue1 is:",headerValue1); 
+  const headerValue2=res.getHeader("server"); 
+  console.log("headerValue2 is:",headerValue2); 
+  const headerValues=res.getHeaders(); 
+  console.log("headerValues are:",headerValues); 
+}
+
+tests {
+  const Ajv = require('ajv');
+    const ajv = new Ajv();
+    
+    const schema = {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "job": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "job",
+        "id",
+        "createdAt"
+      ]
+    }
+    
+    test("Verify JSON returns the right schema", function() {
+    const data = res.getBody();
+    const valid = ajv.validate(schema, data);
+      
+    expect(res.getStatus()).to.equal(201);
+    expect(valid).to.be.true;
+    if (!valid) console.log(ajv.errors);
+    });
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

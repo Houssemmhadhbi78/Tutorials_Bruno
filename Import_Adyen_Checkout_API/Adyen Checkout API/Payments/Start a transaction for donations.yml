@@ -1,0 +1,537 @@
+info:
+  name: Start a transaction for donations
+  type: http
+  seq: 2
+  tags:
+    - Payments
+
+http:
+  method: POST
+  url: "{{baseUrl}}/donations"
+  headers:
+    - name: Idempotency-Key
+      value: 37ca9c97-d1d1-4c62-89e8-706891a563ed
+      description: A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).
+  body:
+    type: json
+    data: |-
+      {
+        "amount": {
+          "currency": "EUR",
+          "value": 1000
+        },
+        "donationAccount": "CHARITY_ACCOUNT",
+        "donationOriginalPspReference": "991559660454807J",
+        "donationToken": "YOUR_DONATION_TOKEN",
+        "merchantAccount": "YOUR_MERCHANT_ACCOUNT",
+        "paymentMethod": {
+          "type": "scheme"
+        },
+        "reference": "YOUR_DONATION_REFERENCE",
+        "returnUrl": "https://your-company.com/...",
+        "shopperInteraction": "ContAuth"
+      }
+  auth:
+    type: basic
+    username: "{{username}}"
+    password: "{{password}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Example response
+    request:
+      url: "{{baseUrl}}/donations"
+      method: POST
+      headers:
+        - name: Idempotency-Key
+          value: 37ca9c97-d1d1-4c62-89e8-706891a563ed
+          description: A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).
+      body:
+        type: json
+        data: |-
+          {
+            "amount": {
+              "currency": "EUR",
+              "value": 1000
+            },
+            "donationAccount": "CHARITY_ACCOUNT",
+            "donationOriginalPspReference": "991559660454807J",
+            "donationToken": "YOUR_DONATION_TOKEN",
+            "merchantAccount": "YOUR_MERCHANT_ACCOUNT",
+            "paymentMethod": {
+              "type": "scheme"
+            },
+            "reference": "YOUR_DONATION_REFERENCE",
+            "returnUrl": "https://your-company.com/...",
+            "shopperInteraction": "ContAuth"
+          }
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "amount": {
+              "currency": "EUR",
+              "value": 1000
+            },
+            "donationAccount": "CHARITY_ACCOUNT",
+            "id": "UNIQUE_RESOURCE_ID",
+            "merchantAccount": "YOUR_MERCHANT_ACCOUNT",
+            "payment": {
+              "amount": {
+                "currency": "EUR",
+                "value": 1000
+              },
+              "merchantReference": "YOUR_DONATION_REFERENCE",
+              "pspReference": "8535762347980628",
+              "resultCode": "Authorised"
+            },
+            "reference": "YOUR_DONATION_REFERENCE",
+            "status": "completed"
+          }
+  - name: Response code 400. Bad request. (Start a donation transaction)
+    request:
+      url: "{{baseUrl}}/donations"
+      method: POST
+      headers:
+        - name: Idempotency-Key
+          value: 37ca9c97-d1d1-4c62-89e8-706891a563ed
+          description: A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).
+      body:
+        type: json
+        data: |-
+          {
+            "amount": {
+              "currency": "EUR",
+              "value": 1000
+            },
+            "donationAccount": "CHARITY_ACCOUNT",
+            "donationOriginalPspReference": "991559660454807J",
+            "donationToken": "YOUR_DONATION_TOKEN",
+            "merchantAccount": "YOUR_MERCHANT_ACCOUNT",
+            "paymentMethod": {
+              "type": "scheme"
+            },
+            "reference": "YOUR_DONATION_REFERENCE",
+            "returnUrl": "https://your-company.com/...",
+            "shopperInteraction": "ContAuth"
+          }
+    response:
+      status: 400
+      statusText: Bad Request
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "errorCode": "702",
+            "errorType": "validation",
+            "message": "Unexpected input: \", expected: }",
+            "status": 400
+          }
+  - name: Response code 400. Bad request. (Start a donation transaction with a token)
+    request:
+      url: "{{baseUrl}}/donations"
+      method: POST
+      headers:
+        - name: Idempotency-Key
+          value: 37ca9c97-d1d1-4c62-89e8-706891a563ed
+          description: A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).
+      body:
+        type: json
+        data: |-
+          {
+            "amount": {
+              "currency": "EUR",
+              "value": 1000
+            },
+            "donationAccount": "CHARITY_ACCOUNT",
+            "merchantAccount": "YOUR_MERCHANT_ACCOUNT",
+            "paymentMethod": {
+              "recurringDetailReference": "7219687191761347",
+              "type": "scheme"
+            },
+            "recurringProcessingModel": "CardOnFile",
+            "reference": "YOUR_DONATION_REFERENCE",
+            "returnUrl": "https://your-company.com/...",
+            "shopperInteraction": "ContAuth",
+            "shopperReference": "YOUR_UNIQUE_SHOPPER_ID"
+          }
+    response:
+      status: 400
+      statusText: Bad Request
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "errorCode": "702",
+            "errorType": "validation",
+            "message": "Unexpected input: \", expected: }",
+            "status": 400
+          }
+  - name: Response code 401. Unauthorized. (Start a donation transaction)
+    request:
+      url: "{{baseUrl}}/donations"
+      method: POST
+      headers:
+        - name: Idempotency-Key
+          value: 37ca9c97-d1d1-4c62-89e8-706891a563ed
+          description: A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).
+      body:
+        type: json
+        data: |-
+          {
+            "amount": {
+              "currency": "EUR",
+              "value": 1000
+            },
+            "donationAccount": "CHARITY_ACCOUNT",
+            "donationOriginalPspReference": "991559660454807J",
+            "donationToken": "YOUR_DONATION_TOKEN",
+            "merchantAccount": "YOUR_MERCHANT_ACCOUNT",
+            "paymentMethod": {
+              "type": "scheme"
+            },
+            "reference": "YOUR_DONATION_REFERENCE",
+            "returnUrl": "https://your-company.com/...",
+            "shopperInteraction": "ContAuth"
+          }
+    response:
+      status: 401
+      statusText: Unauthorized
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "errorCode": "000",
+            "errorType": "security",
+            "message": "HTTP Status Response - Unauthorized",
+            "status": 401
+          }
+  - name: Response code 401. Unauthorized. (Start a donation transaction with a token)
+    request:
+      url: "{{baseUrl}}/donations"
+      method: POST
+      headers:
+        - name: Idempotency-Key
+          value: 37ca9c97-d1d1-4c62-89e8-706891a563ed
+          description: A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).
+      body:
+        type: json
+        data: |-
+          {
+            "amount": {
+              "currency": "EUR",
+              "value": 1000
+            },
+            "donationAccount": "CHARITY_ACCOUNT",
+            "merchantAccount": "YOUR_MERCHANT_ACCOUNT",
+            "paymentMethod": {
+              "recurringDetailReference": "7219687191761347",
+              "type": "scheme"
+            },
+            "recurringProcessingModel": "CardOnFile",
+            "reference": "YOUR_DONATION_REFERENCE",
+            "returnUrl": "https://your-company.com/...",
+            "shopperInteraction": "ContAuth",
+            "shopperReference": "YOUR_UNIQUE_SHOPPER_ID"
+          }
+    response:
+      status: 401
+      statusText: Unauthorized
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "errorCode": "000",
+            "errorType": "security",
+            "message": "HTTP Status Response - Unauthorized",
+            "status": 401
+          }
+  - name: Response code 403. Forbidden. (Start a donation transaction)
+    request:
+      url: "{{baseUrl}}/donations"
+      method: POST
+      headers:
+        - name: Idempotency-Key
+          value: 37ca9c97-d1d1-4c62-89e8-706891a563ed
+          description: A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).
+      body:
+        type: json
+        data: |-
+          {
+            "amount": {
+              "currency": "EUR",
+              "value": 1000
+            },
+            "donationAccount": "CHARITY_ACCOUNT",
+            "donationOriginalPspReference": "991559660454807J",
+            "donationToken": "YOUR_DONATION_TOKEN",
+            "merchantAccount": "YOUR_MERCHANT_ACCOUNT",
+            "paymentMethod": {
+              "type": "scheme"
+            },
+            "reference": "YOUR_DONATION_REFERENCE",
+            "returnUrl": "https://your-company.com/...",
+            "shopperInteraction": "ContAuth"
+          }
+    response:
+      status: 403
+      statusText: Forbidden
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "errorCode": "901",
+            "errorType": "security",
+            "message": "Invalid Merchant Account",
+            "pspReference": "881611827877203B",
+            "status": 403
+          }
+  - name: Response code 403. Forbidden. (Start a donation transaction with a token)
+    request:
+      url: "{{baseUrl}}/donations"
+      method: POST
+      headers:
+        - name: Idempotency-Key
+          value: 37ca9c97-d1d1-4c62-89e8-706891a563ed
+          description: A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).
+      body:
+        type: json
+        data: |-
+          {
+            "amount": {
+              "currency": "EUR",
+              "value": 1000
+            },
+            "donationAccount": "CHARITY_ACCOUNT",
+            "merchantAccount": "YOUR_MERCHANT_ACCOUNT",
+            "paymentMethod": {
+              "recurringDetailReference": "7219687191761347",
+              "type": "scheme"
+            },
+            "recurringProcessingModel": "CardOnFile",
+            "reference": "YOUR_DONATION_REFERENCE",
+            "returnUrl": "https://your-company.com/...",
+            "shopperInteraction": "ContAuth",
+            "shopperReference": "YOUR_UNIQUE_SHOPPER_ID"
+          }
+    response:
+      status: 403
+      statusText: Forbidden
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "errorCode": "901",
+            "errorType": "security",
+            "message": "Invalid Merchant Account",
+            "pspReference": "881611827877203B",
+            "status": 403
+          }
+  - name: Response code 422. Unprocessable entity. (Start a donation transaction)
+    request:
+      url: "{{baseUrl}}/donations"
+      method: POST
+      headers:
+        - name: Idempotency-Key
+          value: 37ca9c97-d1d1-4c62-89e8-706891a563ed
+          description: A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).
+      body:
+        type: json
+        data: |-
+          {
+            "amount": {
+              "currency": "EUR",
+              "value": 1000
+            },
+            "donationAccount": "CHARITY_ACCOUNT",
+            "donationOriginalPspReference": "991559660454807J",
+            "donationToken": "YOUR_DONATION_TOKEN",
+            "merchantAccount": "YOUR_MERCHANT_ACCOUNT",
+            "paymentMethod": {
+              "type": "scheme"
+            },
+            "reference": "YOUR_DONATION_REFERENCE",
+            "returnUrl": "https://your-company.com/...",
+            "shopperInteraction": "ContAuth"
+          }
+    response:
+      status: 422
+      statusText: Unprocessable Entity
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "errorCode": "14_030",
+            "errorType": "validation",
+            "message": "Return URL is missing.",
+            "pspReference": "8816118280275544",
+            "status": 422
+          }
+  - name: Response code 422. Unprocessable entity. (Start a donation transaction with a token)
+    request:
+      url: "{{baseUrl}}/donations"
+      method: POST
+      headers:
+        - name: Idempotency-Key
+          value: 37ca9c97-d1d1-4c62-89e8-706891a563ed
+          description: A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).
+      body:
+        type: json
+        data: |-
+          {
+            "amount": {
+              "currency": "EUR",
+              "value": 1000
+            },
+            "donationAccount": "CHARITY_ACCOUNT",
+            "merchantAccount": "YOUR_MERCHANT_ACCOUNT",
+            "paymentMethod": {
+              "recurringDetailReference": "7219687191761347",
+              "type": "scheme"
+            },
+            "recurringProcessingModel": "CardOnFile",
+            "reference": "YOUR_DONATION_REFERENCE",
+            "returnUrl": "https://your-company.com/...",
+            "shopperInteraction": "ContAuth",
+            "shopperReference": "YOUR_UNIQUE_SHOPPER_ID"
+          }
+    response:
+      status: 422
+      statusText: Unprocessable Entity
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "errorCode": "14_030",
+            "errorType": "validation",
+            "message": "Return URL is missing.",
+            "pspReference": "8816118280275544",
+            "status": 422
+          }
+  - name: Response code 500. Internal server error. (Start a donation transaction)
+    request:
+      url: "{{baseUrl}}/donations"
+      method: POST
+      headers:
+        - name: Idempotency-Key
+          value: 37ca9c97-d1d1-4c62-89e8-706891a563ed
+          description: A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).
+      body:
+        type: json
+        data: |-
+          {
+            "amount": {
+              "currency": "EUR",
+              "value": 1000
+            },
+            "donationAccount": "CHARITY_ACCOUNT",
+            "donationOriginalPspReference": "991559660454807J",
+            "donationToken": "YOUR_DONATION_TOKEN",
+            "merchantAccount": "YOUR_MERCHANT_ACCOUNT",
+            "paymentMethod": {
+              "type": "scheme"
+            },
+            "reference": "YOUR_DONATION_REFERENCE",
+            "returnUrl": "https://your-company.com/...",
+            "shopperInteraction": "ContAuth"
+          }
+    response:
+      status: 500
+      statusText: Internal Server Error
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "errorCode": "905",
+            "errorType": "configuration",
+            "message": "Payment details are not supported",
+            "pspReference": "8516091485743033",
+            "status": 500
+          }
+  - name: Response code 500. Internal server error. (Start a donation transaction with a token)
+    request:
+      url: "{{baseUrl}}/donations"
+      method: POST
+      headers:
+        - name: Idempotency-Key
+          value: 37ca9c97-d1d1-4c62-89e8-706891a563ed
+          description: A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).
+      body:
+        type: json
+        data: |-
+          {
+            "amount": {
+              "currency": "EUR",
+              "value": 1000
+            },
+            "donationAccount": "CHARITY_ACCOUNT",
+            "merchantAccount": "YOUR_MERCHANT_ACCOUNT",
+            "paymentMethod": {
+              "recurringDetailReference": "7219687191761347",
+              "type": "scheme"
+            },
+            "recurringProcessingModel": "CardOnFile",
+            "reference": "YOUR_DONATION_REFERENCE",
+            "returnUrl": "https://your-company.com/...",
+            "shopperInteraction": "ContAuth",
+            "shopperReference": "YOUR_UNIQUE_SHOPPER_ID"
+          }
+    response:
+      status: 500
+      statusText: Internal Server Error
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "errorCode": "905",
+            "errorType": "configuration",
+            "message": "Payment details are not supported",
+            "pspReference": "8516091485743033",
+            "status": 500
+          }
+
+docs: |-
+  Takes in the donation token generated by the `/payments` request and uses it to make the donation for the donation account specified in the request.
+
+  For more information, see [Donations](https://docs.adyen.com/online-payments/donations).

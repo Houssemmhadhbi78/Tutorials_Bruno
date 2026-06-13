@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<testsuites>
+  <testsuite name="CreateUser" file="CreateUser.yml" errors="0" failures="0" skipped="0" tests="8" timestamp="2026-06-12T13:56:00.228" hostname="MHADHBI" time="0.562">
+    <testcase name="res.status eq 201" status="pass" classname="https://reqres.in/api/users" time="0.070"/>
+    <testcase name="res.body.name eq Mhadhbi" status="pass" classname="https://reqres.in/api/users" time="0.070"/>
+    <testcase name="res.body.job eq QA tester" status="pass" classname="https://reqres.in/api/users" time="0.070"/>
+    <testcase name="status code test" status="pass" classname="https://reqres.in/api/users" time="0.070"/>
+    <testcase name="name data type test" status="pass" classname="https://reqres.in/api/users" time="0.070"/>
+    <testcase name="name value test" status="pass" classname="https://reqres.in/api/users" time="0.070"/>
+    <testcase name="status text check test" status="pass" classname="https://reqres.in/api/users" time="0.070"/>
+    <testcase name="header value test" status="pass" classname="https://reqres.in/api/users" time="0.070"/>
+  </testsuite>
+  <testsuite name="GetSingleUser" file="GetSingleUser.yml" errors="0" failures="0" skipped="0" tests="1" timestamp="2026-06-12T13:56:00.233" hostname="MHADHBI" time="0.124">
+    <testcase name="res.status eq 200" status="pass" classname="https://reqres.in/api/users/2" time="0.124"/>
+  </testsuite>
+</testsuites>

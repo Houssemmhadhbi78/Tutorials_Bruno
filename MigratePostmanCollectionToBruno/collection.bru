@@ -1,0 +1,17 @@
+meta {
+  name: Reques.in Collection
+}
+
+auth {
+  mode: apikey
+}
+
+auth:apikey {
+  key: x-api-key
+  value: {{API_Key}}
+  placement: header
+}
+vars:pre-request {
+  API_Key: 
+  Base_Url: 
+}

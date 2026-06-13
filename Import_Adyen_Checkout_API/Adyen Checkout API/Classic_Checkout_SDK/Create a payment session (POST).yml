@@ -1,0 +1,1259 @@
+info:
+  name: Create a payment session (POST)
+  type: http
+  seq: 1
+  tags:
+    - Classic_Checkout_SDK
+
+http:
+  method: POST
+  url: "{{baseUrl}}/paymentSession"
+  headers:
+    - name: Idempotency-Key
+      value: 37ca9c97-d1d1-4c62-89e8-706891a563ed
+      description: A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).
+  body:
+    type: json
+    data: |-
+      {
+        "amount": {
+          "currency": "EUR",
+          "value": 17408
+        },
+        "channel": "Android",
+        "countryCode": "NL",
+        "merchantAccount": "YOUR_MERCHANT_ACCOUNT",
+        "reference": "Your order number",
+        "returnUrl": "app://",
+        "sessionValidity": "2017-04-06T13:09:13Z",
+        "shopperLocale": "nl_NL",
+        "shopperReference": "YOUR_UNIQUE_SHOPPER_ID",
+        "token": "TOKEN_YOU_GET_FROM_CHECKOUT_SDK"
+      }
+  auth:
+    type: basic
+    username: "{{username}}"
+    password: "{{password}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: Example response for request 'enableOneClick'
+    request:
+      url: "{{baseUrl}}/paymentSession"
+      method: POST
+      headers:
+        - name: Idempotency-Key
+          value: 37ca9c97-d1d1-4c62-89e8-706891a563ed
+          description: A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).
+      body:
+        type: json
+        data: |-
+          {
+            "amount": {
+              "currency": "EUR",
+              "value": 17408
+            },
+            "channel": "Web",
+            "countryCode": "NL",
+            "enableOneClick": true,
+            "enableRecurring": true,
+            "html": true,
+            "merchantAccount": "YOUR_MERCHANT_ACCOUNT",
+            "origin": "https://www.yourwebsite.com",
+            "reference": "Your order number",
+            "returnUrl": "https://www.yourshop.com/checkout/result",
+            "sdkVersion": "1.7.0",
+            "shopperLocale": "nl_NL",
+            "shopperReference": "YOUR_UNIQUE_SHOPPER_ID"
+          }
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "paymentSession": "eyJjaGVja291dHNob3BwZXJCYXN..."
+          }
+  - name: Example response for request 'web'
+    request:
+      url: "{{baseUrl}}/paymentSession"
+      method: POST
+      headers:
+        - name: Idempotency-Key
+          value: 37ca9c97-d1d1-4c62-89e8-706891a563ed
+          description: A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).
+      body:
+        type: json
+        data: |-
+          {
+            "amount": {
+              "currency": "EUR",
+              "value": 17408
+            },
+            "channel": "Web",
+            "countryCode": "NL",
+            "html": true,
+            "merchantAccount": "YOUR_MERCHANT_ACCOUNT",
+            "origin": "https://www.yourwebsite.com",
+            "reference": "Your order number",
+            "returnUrl": "https://www.yourshop.com/checkout/result",
+            "sdkVersion": "1.9.5",
+            "shopperLocale": "nl_NL",
+            "shopperReference": "YOUR_UNIQUE_SHOPPER_ID"
+          }
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "paymentSession": "eyJjaGVja291dHNob3BwZXJCYXN..."
+          }
+  - name: Response code 400. Bad request. (Set up a payment session (Android))
+    request:
+      url: "{{baseUrl}}/paymentSession"
+      method: POST
+      headers:
+        - name: Idempotency-Key
+          value: 37ca9c97-d1d1-4c62-89e8-706891a563ed
+          description: A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).
+      body:
+        type: json
+        data: |-
+          {
+            "amount": {
+              "currency": "EUR",
+              "value": 17408
+            },
+            "channel": "Android",
+            "countryCode": "NL",
+            "merchantAccount": "YOUR_MERCHANT_ACCOUNT",
+            "reference": "Your order number",
+            "returnUrl": "app://",
+            "sessionValidity": "2017-04-06T13:09:13Z",
+            "shopperLocale": "nl_NL",
+            "shopperReference": "YOUR_UNIQUE_SHOPPER_ID",
+            "token": "TOKEN_YOU_GET_FROM_CHECKOUT_SDK"
+          }
+    response:
+      status: 400
+      statusText: Bad Request
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "errorCode": "702",
+            "errorType": "validation",
+            "message": "Unexpected input: \", expected: }",
+            "status": 400
+          }
+  - name: Response code 400. Bad request. (Set up a payment session with the option to store card details)
+    request:
+      url: "{{baseUrl}}/paymentSession"
+      method: POST
+      headers:
+        - name: Idempotency-Key
+          value: 37ca9c97-d1d1-4c62-89e8-706891a563ed
+          description: A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).
+      body:
+        type: json
+        data: |-
+          {
+            "amount": {
+              "currency": "EUR",
+              "value": 17408
+            },
+            "channel": "Web",
+            "countryCode": "NL",
+            "enableOneClick": true,
+            "enableRecurring": true,
+            "html": true,
+            "merchantAccount": "YOUR_MERCHANT_ACCOUNT",
+            "origin": "https://www.yourwebsite.com",
+            "reference": "Your order number",
+            "returnUrl": "https://www.yourshop.com/checkout/result",
+            "sdkVersion": "1.7.0",
+            "shopperLocale": "nl_NL",
+            "shopperReference": "YOUR_UNIQUE_SHOPPER_ID"
+          }
+    response:
+      status: 400
+      statusText: Bad Request
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "errorCode": "702",
+            "errorType": "validation",
+            "message": "Unexpected input: \", expected: }",
+            "status": 400
+          }
+  - name: Response code 400. Bad request. (Set up a payment session (iOS))
+    request:
+      url: "{{baseUrl}}/paymentSession"
+      method: POST
+      headers:
+        - name: Idempotency-Key
+          value: 37ca9c97-d1d1-4c62-89e8-706891a563ed
+          description: A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).
+      body:
+        type: json
+        data: |-
+          {
+            "amount": {
+              "currency": "EUR",
+              "value": 17408
+            },
+            "channel": "iOS",
+            "countryCode": "NL",
+            "merchantAccount": "YOUR_MERCHANT_ACCOUNT",
+            "reference": "Your order number",
+            "returnUrl": "app://",
+            "sessionValidity": "2017-04-06T13:09:13Z",
+            "shopperLocale": "nl_NL",
+            "shopperReference": "YOUR_UNIQUE_SHOPPER_ID",
+            "token": "TOKEN_YOU_GET_FROM_CHECKOUT_SDK"
+          }
+    response:
+      status: 400
+      statusText: Bad Request
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "errorCode": "702",
+            "errorType": "validation",
+            "message": "Unexpected input: \", expected: }",
+            "status": 400
+          }
+  - name: Response code 400. Bad request. (Split a payment between a sub-merchant and a platform account)
+    request:
+      url: "{{baseUrl}}/paymentSession"
+      method: POST
+      headers:
+        - name: Idempotency-Key
+          value: 37ca9c97-d1d1-4c62-89e8-706891a563ed
+          description: A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).
+      body:
+        type: json
+        data: |-
+          {
+            "additionalData": {
+              "split.api": "1",
+              "split.currencyCode": "EUR",
+              "split.item1.account": "151272963",
+              "split.item1.amount": "6000",
+              "split.item1.description": "Porcelain Doll: Eliza (20cm)",
+              "split.item1.reference": "6124145",
+              "split.item1.type": "MarketPlace",
+              "split.item2.amount": "200",
+              "split.item2.reference": "6124146",
+              "split.item2.type": "Commission",
+              "split.nrOfItems": "2",
+              "split.totalAmount": "6200"
+            },
+            "amount": {
+              "currency": "EUR",
+              "value": 6200
+            },
+            "channel": "Android",
+            "countryCode": "NL",
+            "merchantAccount": "YOUR_MERCHANT_ACCOUNT",
+            "reference": "Your order number",
+            "returnUrl": "app://",
+            "sessionValidity": "2017-04-06T13:09:13Z",
+            "shopperLocale": "nl_NL",
+            "shopperReference": "YOUR_UNIQUE_SHOPPER_ID",
+            "token": "TOKEN_YOU_GET_FROM_CHECKOUT_SDK"
+          }
+    response:
+      status: 400
+      statusText: Bad Request
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "errorCode": "702",
+            "errorType": "validation",
+            "message": "Unexpected input: \", expected: }",
+            "status": 400
+          }
+  - name: Response code 400. Bad request. (Set up a payment session (Web))
+    request:
+      url: "{{baseUrl}}/paymentSession"
+      method: POST
+      headers:
+        - name: Idempotency-Key
+          value: 37ca9c97-d1d1-4c62-89e8-706891a563ed
+          description: A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).
+      body:
+        type: json
+        data: |-
+          {
+            "amount": {
+              "currency": "EUR",
+              "value": 17408
+            },
+            "channel": "Web",
+            "countryCode": "NL",
+            "html": true,
+            "merchantAccount": "YOUR_MERCHANT_ACCOUNT",
+            "origin": "https://www.yourwebsite.com",
+            "reference": "Your order number",
+            "returnUrl": "https://www.yourshop.com/checkout/result",
+            "sdkVersion": "1.9.5",
+            "shopperLocale": "nl_NL",
+            "shopperReference": "YOUR_UNIQUE_SHOPPER_ID"
+          }
+    response:
+      status: 400
+      statusText: Bad Request
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "errorCode": "702",
+            "errorType": "validation",
+            "message": "Unexpected input: \", expected: }",
+            "status": 400
+          }
+  - name: Response code 401. Unauthorized. (Set up a payment session (Android))
+    request:
+      url: "{{baseUrl}}/paymentSession"
+      method: POST
+      headers:
+        - name: Idempotency-Key
+          value: 37ca9c97-d1d1-4c62-89e8-706891a563ed
+          description: A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).
+      body:
+        type: json
+        data: |-
+          {
+            "amount": {
+              "currency": "EUR",
+              "value": 17408
+            },
+            "channel": "Android",
+            "countryCode": "NL",
+            "merchantAccount": "YOUR_MERCHANT_ACCOUNT",
+            "reference": "Your order number",
+            "returnUrl": "app://",
+            "sessionValidity": "2017-04-06T13:09:13Z",
+            "shopperLocale": "nl_NL",
+            "shopperReference": "YOUR_UNIQUE_SHOPPER_ID",
+            "token": "TOKEN_YOU_GET_FROM_CHECKOUT_SDK"
+          }
+    response:
+      status: 401
+      statusText: Unauthorized
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "errorCode": "000",
+            "errorType": "security",
+            "message": "HTTP Status Response - Unauthorized",
+            "status": 401
+          }
+  - name: Response code 401. Unauthorized. (Set up a payment session with the option to store card details)
+    request:
+      url: "{{baseUrl}}/paymentSession"
+      method: POST
+      headers:
+        - name: Idempotency-Key
+          value: 37ca9c97-d1d1-4c62-89e8-706891a563ed
+          description: A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).
+      body:
+        type: json
+        data: |-
+          {
+            "amount": {
+              "currency": "EUR",
+              "value": 17408
+            },
+            "channel": "Web",
+            "countryCode": "NL",
+            "enableOneClick": true,
+            "enableRecurring": true,
+            "html": true,
+            "merchantAccount": "YOUR_MERCHANT_ACCOUNT",
+            "origin": "https://www.yourwebsite.com",
+            "reference": "Your order number",
+            "returnUrl": "https://www.yourshop.com/checkout/result",
+            "sdkVersion": "1.7.0",
+            "shopperLocale": "nl_NL",
+            "shopperReference": "YOUR_UNIQUE_SHOPPER_ID"
+          }
+    response:
+      status: 401
+      statusText: Unauthorized
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "errorCode": "000",
+            "errorType": "security",
+            "message": "HTTP Status Response - Unauthorized",
+            "status": 401
+          }
+  - name: Response code 401. Unauthorized. (Set up a payment session (iOS))
+    request:
+      url: "{{baseUrl}}/paymentSession"
+      method: POST
+      headers:
+        - name: Idempotency-Key
+          value: 37ca9c97-d1d1-4c62-89e8-706891a563ed
+          description: A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).
+      body:
+        type: json
+        data: |-
+          {
+            "amount": {
+              "currency": "EUR",
+              "value": 17408
+            },
+            "channel": "iOS",
+            "countryCode": "NL",
+            "merchantAccount": "YOUR_MERCHANT_ACCOUNT",
+            "reference": "Your order number",
+            "returnUrl": "app://",
+            "sessionValidity": "2017-04-06T13:09:13Z",
+            "shopperLocale": "nl_NL",
+            "shopperReference": "YOUR_UNIQUE_SHOPPER_ID",
+            "token": "TOKEN_YOU_GET_FROM_CHECKOUT_SDK"
+          }
+    response:
+      status: 401
+      statusText: Unauthorized
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "errorCode": "000",
+            "errorType": "security",
+            "message": "HTTP Status Response - Unauthorized",
+            "status": 401
+          }
+  - name: Response code 401. Unauthorized. (Split a payment between a sub-merchant and a platform account)
+    request:
+      url: "{{baseUrl}}/paymentSession"
+      method: POST
+      headers:
+        - name: Idempotency-Key
+          value: 37ca9c97-d1d1-4c62-89e8-706891a563ed
+          description: A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).
+      body:
+        type: json
+        data: |-
+          {
+            "additionalData": {
+              "split.api": "1",
+              "split.currencyCode": "EUR",
+              "split.item1.account": "151272963",
+              "split.item1.amount": "6000",
+              "split.item1.description": "Porcelain Doll: Eliza (20cm)",
+              "split.item1.reference": "6124145",
+              "split.item1.type": "MarketPlace",
+              "split.item2.amount": "200",
+              "split.item2.reference": "6124146",
+              "split.item2.type": "Commission",
+              "split.nrOfItems": "2",
+              "split.totalAmount": "6200"
+            },
+            "amount": {
+              "currency": "EUR",
+              "value": 6200
+            },
+            "channel": "Android",
+            "countryCode": "NL",
+            "merchantAccount": "YOUR_MERCHANT_ACCOUNT",
+            "reference": "Your order number",
+            "returnUrl": "app://",
+            "sessionValidity": "2017-04-06T13:09:13Z",
+            "shopperLocale": "nl_NL",
+            "shopperReference": "YOUR_UNIQUE_SHOPPER_ID",
+            "token": "TOKEN_YOU_GET_FROM_CHECKOUT_SDK"
+          }
+    response:
+      status: 401
+      statusText: Unauthorized
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "errorCode": "000",
+            "errorType": "security",
+            "message": "HTTP Status Response - Unauthorized",
+            "status": 401
+          }
+  - name: Response code 401. Unauthorized. (Set up a payment session (Web))
+    request:
+      url: "{{baseUrl}}/paymentSession"
+      method: POST
+      headers:
+        - name: Idempotency-Key
+          value: 37ca9c97-d1d1-4c62-89e8-706891a563ed
+          description: A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).
+      body:
+        type: json
+        data: |-
+          {
+            "amount": {
+              "currency": "EUR",
+              "value": 17408
+            },
+            "channel": "Web",
+            "countryCode": "NL",
+            "html": true,
+            "merchantAccount": "YOUR_MERCHANT_ACCOUNT",
+            "origin": "https://www.yourwebsite.com",
+            "reference": "Your order number",
+            "returnUrl": "https://www.yourshop.com/checkout/result",
+            "sdkVersion": "1.9.5",
+            "shopperLocale": "nl_NL",
+            "shopperReference": "YOUR_UNIQUE_SHOPPER_ID"
+          }
+    response:
+      status: 401
+      statusText: Unauthorized
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "errorCode": "000",
+            "errorType": "security",
+            "message": "HTTP Status Response - Unauthorized",
+            "status": 401
+          }
+  - name: Response code 403. Forbidden. (Set up a payment session (Android))
+    request:
+      url: "{{baseUrl}}/paymentSession"
+      method: POST
+      headers:
+        - name: Idempotency-Key
+          value: 37ca9c97-d1d1-4c62-89e8-706891a563ed
+          description: A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).
+      body:
+        type: json
+        data: |-
+          {
+            "amount": {
+              "currency": "EUR",
+              "value": 17408
+            },
+            "channel": "Android",
+            "countryCode": "NL",
+            "merchantAccount": "YOUR_MERCHANT_ACCOUNT",
+            "reference": "Your order number",
+            "returnUrl": "app://",
+            "sessionValidity": "2017-04-06T13:09:13Z",
+            "shopperLocale": "nl_NL",
+            "shopperReference": "YOUR_UNIQUE_SHOPPER_ID",
+            "token": "TOKEN_YOU_GET_FROM_CHECKOUT_SDK"
+          }
+    response:
+      status: 403
+      statusText: Forbidden
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "errorCode": "901",
+            "errorType": "security",
+            "message": "Invalid Merchant Account",
+            "pspReference": "881611827877203B",
+            "status": 403
+          }
+  - name: Response code 403. Forbidden. (Set up a payment session with the option to store card details)
+    request:
+      url: "{{baseUrl}}/paymentSession"
+      method: POST
+      headers:
+        - name: Idempotency-Key
+          value: 37ca9c97-d1d1-4c62-89e8-706891a563ed
+          description: A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).
+      body:
+        type: json
+        data: |-
+          {
+            "amount": {
+              "currency": "EUR",
+              "value": 17408
+            },
+            "channel": "Web",
+            "countryCode": "NL",
+            "enableOneClick": true,
+            "enableRecurring": true,
+            "html": true,
+            "merchantAccount": "YOUR_MERCHANT_ACCOUNT",
+            "origin": "https://www.yourwebsite.com",
+            "reference": "Your order number",
+            "returnUrl": "https://www.yourshop.com/checkout/result",
+            "sdkVersion": "1.7.0",
+            "shopperLocale": "nl_NL",
+            "shopperReference": "YOUR_UNIQUE_SHOPPER_ID"
+          }
+    response:
+      status: 403
+      statusText: Forbidden
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "errorCode": "901",
+            "errorType": "security",
+            "message": "Invalid Merchant Account",
+            "pspReference": "881611827877203B",
+            "status": 403
+          }
+  - name: Response code 403. Forbidden. (Set up a payment session (iOS))
+    request:
+      url: "{{baseUrl}}/paymentSession"
+      method: POST
+      headers:
+        - name: Idempotency-Key
+          value: 37ca9c97-d1d1-4c62-89e8-706891a563ed
+          description: A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).
+      body:
+        type: json
+        data: |-
+          {
+            "amount": {
+              "currency": "EUR",
+              "value": 17408
+            },
+            "channel": "iOS",
+            "countryCode": "NL",
+            "merchantAccount": "YOUR_MERCHANT_ACCOUNT",
+            "reference": "Your order number",
+            "returnUrl": "app://",
+            "sessionValidity": "2017-04-06T13:09:13Z",
+            "shopperLocale": "nl_NL",
+            "shopperReference": "YOUR_UNIQUE_SHOPPER_ID",
+            "token": "TOKEN_YOU_GET_FROM_CHECKOUT_SDK"
+          }
+    response:
+      status: 403
+      statusText: Forbidden
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "errorCode": "901",
+            "errorType": "security",
+            "message": "Invalid Merchant Account",
+            "pspReference": "881611827877203B",
+            "status": 403
+          }
+  - name: Response code 403. Forbidden. (Split a payment between a sub-merchant and a platform account)
+    request:
+      url: "{{baseUrl}}/paymentSession"
+      method: POST
+      headers:
+        - name: Idempotency-Key
+          value: 37ca9c97-d1d1-4c62-89e8-706891a563ed
+          description: A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).
+      body:
+        type: json
+        data: |-
+          {
+            "additionalData": {
+              "split.api": "1",
+              "split.currencyCode": "EUR",
+              "split.item1.account": "151272963",
+              "split.item1.amount": "6000",
+              "split.item1.description": "Porcelain Doll: Eliza (20cm)",
+              "split.item1.reference": "6124145",
+              "split.item1.type": "MarketPlace",
+              "split.item2.amount": "200",
+              "split.item2.reference": "6124146",
+              "split.item2.type": "Commission",
+              "split.nrOfItems": "2",
+              "split.totalAmount": "6200"
+            },
+            "amount": {
+              "currency": "EUR",
+              "value": 6200
+            },
+            "channel": "Android",
+            "countryCode": "NL",
+            "merchantAccount": "YOUR_MERCHANT_ACCOUNT",
+            "reference": "Your order number",
+            "returnUrl": "app://",
+            "sessionValidity": "2017-04-06T13:09:13Z",
+            "shopperLocale": "nl_NL",
+            "shopperReference": "YOUR_UNIQUE_SHOPPER_ID",
+            "token": "TOKEN_YOU_GET_FROM_CHECKOUT_SDK"
+          }
+    response:
+      status: 403
+      statusText: Forbidden
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "errorCode": "901",
+            "errorType": "security",
+            "message": "Invalid Merchant Account",
+            "pspReference": "881611827877203B",
+            "status": 403
+          }
+  - name: Response code 403. Forbidden. (Set up a payment session (Web))
+    request:
+      url: "{{baseUrl}}/paymentSession"
+      method: POST
+      headers:
+        - name: Idempotency-Key
+          value: 37ca9c97-d1d1-4c62-89e8-706891a563ed
+          description: A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).
+      body:
+        type: json
+        data: |-
+          {
+            "amount": {
+              "currency": "EUR",
+              "value": 17408
+            },
+            "channel": "Web",
+            "countryCode": "NL",
+            "html": true,
+            "merchantAccount": "YOUR_MERCHANT_ACCOUNT",
+            "origin": "https://www.yourwebsite.com",
+            "reference": "Your order number",
+            "returnUrl": "https://www.yourshop.com/checkout/result",
+            "sdkVersion": "1.9.5",
+            "shopperLocale": "nl_NL",
+            "shopperReference": "YOUR_UNIQUE_SHOPPER_ID"
+          }
+    response:
+      status: 403
+      statusText: Forbidden
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "errorCode": "901",
+            "errorType": "security",
+            "message": "Invalid Merchant Account",
+            "pspReference": "881611827877203B",
+            "status": 403
+          }
+  - name: Response code 422. Unprocessable entity. (Set up a payment session (Android))
+    request:
+      url: "{{baseUrl}}/paymentSession"
+      method: POST
+      headers:
+        - name: Idempotency-Key
+          value: 37ca9c97-d1d1-4c62-89e8-706891a563ed
+          description: A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).
+      body:
+        type: json
+        data: |-
+          {
+            "amount": {
+              "currency": "EUR",
+              "value": 17408
+            },
+            "channel": "Android",
+            "countryCode": "NL",
+            "merchantAccount": "YOUR_MERCHANT_ACCOUNT",
+            "reference": "Your order number",
+            "returnUrl": "app://",
+            "sessionValidity": "2017-04-06T13:09:13Z",
+            "shopperLocale": "nl_NL",
+            "shopperReference": "YOUR_UNIQUE_SHOPPER_ID",
+            "token": "TOKEN_YOU_GET_FROM_CHECKOUT_SDK"
+          }
+    response:
+      status: 422
+      statusText: Unprocessable Entity
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "errorCode": "14_030",
+            "errorType": "validation",
+            "message": "Return URL is missing.",
+            "pspReference": "8816118280275544",
+            "status": 422
+          }
+  - name: Response code 422. Unprocessable entity. (Set up a payment session with the option to store card details)
+    request:
+      url: "{{baseUrl}}/paymentSession"
+      method: POST
+      headers:
+        - name: Idempotency-Key
+          value: 37ca9c97-d1d1-4c62-89e8-706891a563ed
+          description: A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).
+      body:
+        type: json
+        data: |-
+          {
+            "amount": {
+              "currency": "EUR",
+              "value": 17408
+            },
+            "channel": "Web",
+            "countryCode": "NL",
+            "enableOneClick": true,
+            "enableRecurring": true,
+            "html": true,
+            "merchantAccount": "YOUR_MERCHANT_ACCOUNT",
+            "origin": "https://www.yourwebsite.com",
+            "reference": "Your order number",
+            "returnUrl": "https://www.yourshop.com/checkout/result",
+            "sdkVersion": "1.7.0",
+            "shopperLocale": "nl_NL",
+            "shopperReference": "YOUR_UNIQUE_SHOPPER_ID"
+          }
+    response:
+      status: 422
+      statusText: Unprocessable Entity
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "errorCode": "14_030",
+            "errorType": "validation",
+            "message": "Return URL is missing.",
+            "pspReference": "8816118280275544",
+            "status": 422
+          }
+  - name: Response code 422. Unprocessable entity. (Set up a payment session (iOS))
+    request:
+      url: "{{baseUrl}}/paymentSession"
+      method: POST
+      headers:
+        - name: Idempotency-Key
+          value: 37ca9c97-d1d1-4c62-89e8-706891a563ed
+          description: A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).
+      body:
+        type: json
+        data: |-
+          {
+            "amount": {
+              "currency": "EUR",
+              "value": 17408
+            },
+            "channel": "iOS",
+            "countryCode": "NL",
+            "merchantAccount": "YOUR_MERCHANT_ACCOUNT",
+            "reference": "Your order number",
+            "returnUrl": "app://",
+            "sessionValidity": "2017-04-06T13:09:13Z",
+            "shopperLocale": "nl_NL",
+            "shopperReference": "YOUR_UNIQUE_SHOPPER_ID",
+            "token": "TOKEN_YOU_GET_FROM_CHECKOUT_SDK"
+          }
+    response:
+      status: 422
+      statusText: Unprocessable Entity
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "errorCode": "14_030",
+            "errorType": "validation",
+            "message": "Return URL is missing.",
+            "pspReference": "8816118280275544",
+            "status": 422
+          }
+  - name: Response code 422. Unprocessable entity. (Split a payment between a sub-merchant and a platform account)
+    request:
+      url: "{{baseUrl}}/paymentSession"
+      method: POST
+      headers:
+        - name: Idempotency-Key
+          value: 37ca9c97-d1d1-4c62-89e8-706891a563ed
+          description: A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).
+      body:
+        type: json
+        data: |-
+          {
+            "additionalData": {
+              "split.api": "1",
+              "split.currencyCode": "EUR",
+              "split.item1.account": "151272963",
+              "split.item1.amount": "6000",
+              "split.item1.description": "Porcelain Doll: Eliza (20cm)",
+              "split.item1.reference": "6124145",
+              "split.item1.type": "MarketPlace",
+              "split.item2.amount": "200",
+              "split.item2.reference": "6124146",
+              "split.item2.type": "Commission",
+              "split.nrOfItems": "2",
+              "split.totalAmount": "6200"
+            },
+            "amount": {
+              "currency": "EUR",
+              "value": 6200
+            },
+            "channel": "Android",
+            "countryCode": "NL",
+            "merchantAccount": "YOUR_MERCHANT_ACCOUNT",
+            "reference": "Your order number",
+            "returnUrl": "app://",
+            "sessionValidity": "2017-04-06T13:09:13Z",
+            "shopperLocale": "nl_NL",
+            "shopperReference": "YOUR_UNIQUE_SHOPPER_ID",
+            "token": "TOKEN_YOU_GET_FROM_CHECKOUT_SDK"
+          }
+    response:
+      status: 422
+      statusText: Unprocessable Entity
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "errorCode": "14_030",
+            "errorType": "validation",
+            "message": "Return URL is missing.",
+            "pspReference": "8816118280275544",
+            "status": 422
+          }
+  - name: Response code 422. Unprocessable entity. (Set up a payment session (Web))
+    request:
+      url: "{{baseUrl}}/paymentSession"
+      method: POST
+      headers:
+        - name: Idempotency-Key
+          value: 37ca9c97-d1d1-4c62-89e8-706891a563ed
+          description: A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).
+      body:
+        type: json
+        data: |-
+          {
+            "amount": {
+              "currency": "EUR",
+              "value": 17408
+            },
+            "channel": "Web",
+            "countryCode": "NL",
+            "html": true,
+            "merchantAccount": "YOUR_MERCHANT_ACCOUNT",
+            "origin": "https://www.yourwebsite.com",
+            "reference": "Your order number",
+            "returnUrl": "https://www.yourshop.com/checkout/result",
+            "sdkVersion": "1.9.5",
+            "shopperLocale": "nl_NL",
+            "shopperReference": "YOUR_UNIQUE_SHOPPER_ID"
+          }
+    response:
+      status: 422
+      statusText: Unprocessable Entity
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "errorCode": "14_030",
+            "errorType": "validation",
+            "message": "Return URL is missing.",
+            "pspReference": "8816118280275544",
+            "status": 422
+          }
+  - name: Response code 500. Internal server error. (Set up a payment session (Android))
+    request:
+      url: "{{baseUrl}}/paymentSession"
+      method: POST
+      headers:
+        - name: Idempotency-Key
+          value: 37ca9c97-d1d1-4c62-89e8-706891a563ed
+          description: A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).
+      body:
+        type: json
+        data: |-
+          {
+            "amount": {
+              "currency": "EUR",
+              "value": 17408
+            },
+            "channel": "Android",
+            "countryCode": "NL",
+            "merchantAccount": "YOUR_MERCHANT_ACCOUNT",
+            "reference": "Your order number",
+            "returnUrl": "app://",
+            "sessionValidity": "2017-04-06T13:09:13Z",
+            "shopperLocale": "nl_NL",
+            "shopperReference": "YOUR_UNIQUE_SHOPPER_ID",
+            "token": "TOKEN_YOU_GET_FROM_CHECKOUT_SDK"
+          }
+    response:
+      status: 500
+      statusText: Internal Server Error
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "errorCode": "905",
+            "errorType": "configuration",
+            "message": "Payment details are not supported",
+            "pspReference": "8516091485743033",
+            "status": 500
+          }
+  - name: Response code 500. Internal server error. (Set up a payment session with the option to store card details)
+    request:
+      url: "{{baseUrl}}/paymentSession"
+      method: POST
+      headers:
+        - name: Idempotency-Key
+          value: 37ca9c97-d1d1-4c62-89e8-706891a563ed
+          description: A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).
+      body:
+        type: json
+        data: |-
+          {
+            "amount": {
+              "currency": "EUR",
+              "value": 17408
+            },
+            "channel": "Web",
+            "countryCode": "NL",
+            "enableOneClick": true,
+            "enableRecurring": true,
+            "html": true,
+            "merchantAccount": "YOUR_MERCHANT_ACCOUNT",
+            "origin": "https://www.yourwebsite.com",
+            "reference": "Your order number",
+            "returnUrl": "https://www.yourshop.com/checkout/result",
+            "sdkVersion": "1.7.0",
+            "shopperLocale": "nl_NL",
+            "shopperReference": "YOUR_UNIQUE_SHOPPER_ID"
+          }
+    response:
+      status: 500
+      statusText: Internal Server Error
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "errorCode": "905",
+            "errorType": "configuration",
+            "message": "Payment details are not supported",
+            "pspReference": "8516091485743033",
+            "status": 500
+          }
+  - name: Response code 500. Internal server error. (Set up a payment session (iOS))
+    request:
+      url: "{{baseUrl}}/paymentSession"
+      method: POST
+      headers:
+        - name: Idempotency-Key
+          value: 37ca9c97-d1d1-4c62-89e8-706891a563ed
+          description: A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).
+      body:
+        type: json
+        data: |-
+          {
+            "amount": {
+              "currency": "EUR",
+              "value": 17408
+            },
+            "channel": "iOS",
+            "countryCode": "NL",
+            "merchantAccount": "YOUR_MERCHANT_ACCOUNT",
+            "reference": "Your order number",
+            "returnUrl": "app://",
+            "sessionValidity": "2017-04-06T13:09:13Z",
+            "shopperLocale": "nl_NL",
+            "shopperReference": "YOUR_UNIQUE_SHOPPER_ID",
+            "token": "TOKEN_YOU_GET_FROM_CHECKOUT_SDK"
+          }
+    response:
+      status: 500
+      statusText: Internal Server Error
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "errorCode": "905",
+            "errorType": "configuration",
+            "message": "Payment details are not supported",
+            "pspReference": "8516091485743033",
+            "status": 500
+          }
+  - name: Response code 500. Internal server error. (Split a payment between a sub-merchant and a platform account)
+    request:
+      url: "{{baseUrl}}/paymentSession"
+      method: POST
+      headers:
+        - name: Idempotency-Key
+          value: 37ca9c97-d1d1-4c62-89e8-706891a563ed
+          description: A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).
+      body:
+        type: json
+        data: |-
+          {
+            "additionalData": {
+              "split.api": "1",
+              "split.currencyCode": "EUR",
+              "split.item1.account": "151272963",
+              "split.item1.amount": "6000",
+              "split.item1.description": "Porcelain Doll: Eliza (20cm)",
+              "split.item1.reference": "6124145",
+              "split.item1.type": "MarketPlace",
+              "split.item2.amount": "200",
+              "split.item2.reference": "6124146",
+              "split.item2.type": "Commission",
+              "split.nrOfItems": "2",
+              "split.totalAmount": "6200"
+            },
+            "amount": {
+              "currency": "EUR",
+              "value": 6200
+            },
+            "channel": "Android",
+            "countryCode": "NL",
+            "merchantAccount": "YOUR_MERCHANT_ACCOUNT",
+            "reference": "Your order number",
+            "returnUrl": "app://",
+            "sessionValidity": "2017-04-06T13:09:13Z",
+            "shopperLocale": "nl_NL",
+            "shopperReference": "YOUR_UNIQUE_SHOPPER_ID",
+            "token": "TOKEN_YOU_GET_FROM_CHECKOUT_SDK"
+          }
+    response:
+      status: 500
+      statusText: Internal Server Error
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "errorCode": "905",
+            "errorType": "configuration",
+            "message": "Payment details are not supported",
+            "pspReference": "8516091485743033",
+            "status": 500
+          }
+  - name: Response code 500. Internal server error. (Set up a payment session (Web))
+    request:
+      url: "{{baseUrl}}/paymentSession"
+      method: POST
+      headers:
+        - name: Idempotency-Key
+          value: 37ca9c97-d1d1-4c62-89e8-706891a563ed
+          description: A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).
+      body:
+        type: json
+        data: |-
+          {
+            "amount": {
+              "currency": "EUR",
+              "value": 17408
+            },
+            "channel": "Web",
+            "countryCode": "NL",
+            "html": true,
+            "merchantAccount": "YOUR_MERCHANT_ACCOUNT",
+            "origin": "https://www.yourwebsite.com",
+            "reference": "Your order number",
+            "returnUrl": "https://www.yourshop.com/checkout/result",
+            "sdkVersion": "1.9.5",
+            "shopperLocale": "nl_NL",
+            "shopperReference": "YOUR_UNIQUE_SHOPPER_ID"
+          }
+    response:
+      status: 500
+      statusText: Internal Server Error
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "errorCode": "905",
+            "errorType": "configuration",
+            "message": "Payment details are not supported",
+            "pspReference": "8516091485743033",
+            "status": 500
+          }
+
+docs: |-
+  Provides the data object that can be used to start the Checkout SDK. To set up the payment, pass its amount, currency, and other required parameters. We use this to optimise the payment flow and perform better risk assessment of the transaction.
+
+  For more information, refer to [How it works](https://docs.adyen.com/online-payments#howitworks).

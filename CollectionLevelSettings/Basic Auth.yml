@@ -1,0 +1,15 @@
+info:
+  name: Basic Auth
+  type: http
+  seq: 1
+
+http:
+  method: GET
+  url: https://postman-echo.com/basic-auth
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

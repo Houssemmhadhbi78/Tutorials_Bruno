@@ -1,0 +1,277 @@
+{
+  "info": {
+    "_postman_id": "d814ddea-87b5-4c39-a1a4-12ac1dc1551e",
+    "name": "Reques.in Collection",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "36136489",
+    "_collection_link": "https://go.postman.co/collection/36136489-d814ddea-87b5-4c39-a1a4-12ac1dc1551e?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Read Single User",
+      "request": {
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "value",
+              "value": "reqres_1f5c662008d74ffc93882dd86bcbe461",
+              "type": "string"
+            },
+            {
+              "key": "key",
+              "value": "x-api-key",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [
+          {
+            "key": "x-api-key",
+            "value": "{{API_Reqres_Global}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{Base_Url}}/api/users/2",
+          "host": [
+            "{{Base_Url}}"
+          ],
+          "path": [
+            "api",
+            "users",
+            "2"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Read All User",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "let multiplay =(a,b) => console.log(a*b);",
+              "let add =(a,b) => console.log(a+b);",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "x-api-key",
+            "value": "{{API_Reqres_Global}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{Base_Url}}/api/users",
+          "host": [
+            "{{Base_Url}}"
+          ],
+          "path": [
+            "api",
+            "users"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update  Single User",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "x-api-key",
+            "value": "{{API_Key}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"name\": \"morpheus1\",\r\n    \"job\": \"zion resident1\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{Base_Url}}/api/users/822",
+          "host": [
+            "{{Base_Url}}"
+          ],
+          "path": [
+            "api",
+            "users",
+            "822"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Delete Single User",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "x-api-key",
+            "value": "{{API_Key}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{Base_Url}}/api/users/822",
+          "host": [
+            "{{Base_Url}}"
+          ],
+          "path": [
+            "api",
+            "users",
+            "822"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create record",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Response status code is 201\", function(){\r",
+              "    pm.expect(pm.response.code).to.equal(201);\r",
+              "})"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "x-api-key",
+              "type": "string"
+            },
+            {
+              "key": "value",
+              "value": "reqres_1f5c662008d74ffc93882dd86bcbe461",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [
+          {
+            "key": "x-api-key",
+            "value": "{{API_Key}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"name\": \"Tester_1\",\r\n    \"job\": \"Lead Tester_1\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{Base_Url}}/api/users",
+          "host": [
+            "{{Base_Url}}"
+          ],
+          "path": [
+            "api",
+            "users"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "value",
+        "value": "{{API_Key}}",
+        "type": "string"
+      },
+      {
+        "key": "key",
+        "value": "x-api-key",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "API_Key",
+      "value": ""
+    },
+    {
+      "key": "Base_Url",
+      "value": ""
+    }
+  ]
+}

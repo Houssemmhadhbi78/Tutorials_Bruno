@@ -1,0 +1,23 @@
+info:
+  name: API Key Authentication Direct
+  type: http
+  seq: 12
+
+http:
+  method: GET
+  url: https://api.openweathermap.org/data/2.5/weather?q=Kochi
+  params:
+    - name: q
+      value: Kochi
+      type: query
+  auth:
+    type: apikey
+    key: appid
+    value: "{{apiKey}}"
+    placement: query
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

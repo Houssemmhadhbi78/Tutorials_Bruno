@@ -1,0 +1,7 @@
+info:
+  name: Payment_links
+  type: folder
+  seq: 1
+
+request:
+  auth: inherit

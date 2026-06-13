@@ -1,0 +1,8 @@
+name: AuthTEST
+variables:
+  - secret: true
+    name: passwordEnvValue
+  - secret: true
+    name: passwordEnv1Value
+  - secret: true
+    name: apiKey

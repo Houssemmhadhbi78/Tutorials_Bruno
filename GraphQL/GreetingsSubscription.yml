@@ -1,0 +1,20 @@
+info:
+  name: GreetingsSubscription
+  type: graphql
+  seq: 2
+
+graphql:
+  method: POST
+  url: https://graphql.postman-echo.com/graphql
+  body:
+    query: |-
+      subscription Greetings{
+        greetings
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

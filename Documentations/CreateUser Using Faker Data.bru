@@ -1,0 +1,56 @@
+meta {
+  name: CreateUser Using Faker Data
+  type: http
+  seq: 9
+}
+
+post {
+  url: {{baseUrl}}/users
+  body: none
+  auth: inherit
+}
+
+headers {
+  x-api-key: reqres_1f5c662008d74ffc93882dd86bcbe461
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "name": "Mhadhbi",
+      "job": "QA tester" 
+    }
+}
+
+assert {
+  res.status: eq 201
+}
+
+script:pre-request {
+  const { faker } = require('@faker-js/faker');
+  const randomName = faker.person.firstName();
+  const randomJob = faker.person.jobTitle();
+  req.setBody({
+    name: randomName,
+    job: randomJob
+  });
+}
+
+tests {
+  test("status code test",function(){
+    expect(res.getStatus()).to.equal(201);
+  });
+  
+  test("name data type test",function(){
+    expect(res.getBody().name).to.be.a('string');
+  });
+  
+  test("status text check test",function(){
+    expect(res.statusText).to.equal("Created");
+  });
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

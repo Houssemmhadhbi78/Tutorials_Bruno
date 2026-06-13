@@ -1,0 +1,20 @@
+info:
+  name: Get Created Post
+  type: http
+  seq: 2
+
+http:
+  method: GET
+  url: http://localhost:3000/posts/{{postId}}
+  auth: inherit
+
+runtime:
+  scripts:
+    - type: after-response
+      code: bru.setNextRequest("Update Post");
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

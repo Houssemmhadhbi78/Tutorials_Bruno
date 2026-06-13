@@ -1,0 +1,286 @@
+[
+  {
+    "iterationIndex": 0,
+    "results": [
+      {
+        "test": {
+          "filename": "CreateUser.yml"
+        },
+        "request": {
+          "method": "POST",
+          "url": "https://reqres.in/api/users",
+          "headers": {
+            "x-api-key": "********",
+            "Content-Type": "application/json",
+            "headerKey1": "headerValue1",
+            "headerKey2": "headerValue2"
+          },
+          "data": "{\n  \"name\": \"Mhadhbi\",\n    \"job\": \"QA tester\" \n  }"
+        },
+        "response": {
+          "status": 201,
+          "statusText": "Created",
+          "headers": {
+            "date": "Fri, 12 Jun 2026 13:52:58 GMT",
+            "content-type": "application/json; charset=utf-8",
+            "content-length": "494",
+            "connection": "close",
+            "access-control-allow-origin": "*",
+            "cache-control": "no-store",
+            "cross-origin-opener-policy": "same-origin",
+            "cross-origin-resource-policy": "same-origin",
+            "etag": "W/\"1ee-PuT8AFPCTJpSFFAERWCWaxwF+Ro\"",
+            "nel": "{\"report_to\":\"heroku-nel\",\"response_headers\":[\"Via\"],\"max_age\":3600,\"success_fraction\":0.01,\"failure_fraction\":0.1}",
+            "origin-agent-cluster": "?1",
+            "ratelimit-limit": "20",
+            "ratelimit-policy": "20;w=60",
+            "ratelimit-remaining": "19",
+            "ratelimit-reset": "60",
+            "referrer-policy": "strict-origin-when-cross-origin",
+            "report-to": "{\"group\":\"heroku-nel\",\"endpoints\":[{\"url\":\"https://nel.heroku.com/reports?s=wP1Yo0LPKMlphs%2Fq7p8bKn0QRO1g6t31r5A2cBRFMEs%3D\\u0026sid=c4c9725f-1ab0-44d8-820f-430df2718e11\\u0026ts=1781272378\"}],\"max_age\":3600}",
+            "reporting-endpoints": "heroku-nel=\"https://nel.heroku.com/reports?s=wP1Yo0LPKMlphs%2Fq7p8bKn0QRO1g6t31r5A2cBRFMEs%3D&sid=c4c9725f-1ab0-44d8-820f-430df2718e11&ts=1781272378\"",
+            "server": "cloudflare",
+            "strict-transport-security": "max-age=31536000; includeSubDomains",
+            "via": "1.1 heroku-router",
+            "x-content-type-options": "nosniff",
+            "x-dns-prefetch-control": "off",
+            "x-download-options": "noopen",
+            "x-frame-options": "DENY",
+            "x-permitted-cross-domain-policies": "none",
+            "x-powered-by": "ReqRes.in - Deploy backends in 30 seconds",
+            "x-ratelimit-limit": "250",
+            "x-ratelimit-remaining": "166",
+            "x-ratelimit-reset": "1781308800",
+            "x-reqres-docs": "https://reqres.in",
+            "x-reqres-message": "This API is powered by ReqRes. Deploy your own backend in 30 seconds!",
+            "x-reqres-templates": "https://app.reqres.in/templates",
+            "x-reqres-tip": "Create your own backend with persistent data - app.reqres.in/dashboard",
+            "x-reqres-upgrade": "https://app.reqres.in/upgrade",
+            "x-request-id": "86b6563b-317f-a797-2722-a9544c329784",
+            "x-robots-tag": "noindex, nofollow",
+            "x-xss-protection": "0",
+            "cf-cache-status": "DYNAMIC",
+            "cf-ray": "a0a956cdb920803e-CDG"
+          },
+          "data": {
+            "name": "Mhadhbi",
+            "job": "QA tester",
+            "id": "892",
+            "createdAt": "2026-06-12T13:52:58.555Z",
+            "_meta": {
+              "powered_by": "ReqRes",
+              "docs_url": "https://app.reqres.in/documentation",
+              "upgrade_url": "https://app.reqres.in/upgrade",
+              "example_url": "https://app.reqres.in/examples/notes-app",
+              "variant": "v1_a",
+              "message": "Your data persists here. Add auth, logs, and custom schemas to build a real backend.",
+              "cta": {
+                "label": "See example app",
+                "url": "https://app.reqres.in/examples/notes-app"
+              },
+              "context": "legacy_success"
+            }
+          },
+          "url": "https://reqres.in/api/users",
+          "responseTime": 133,
+          "duration": 133,
+          "size": 494
+        },
+        "error": null,
+        "status": "pass",
+        "assertionResults": [
+          {
+            "uid": "LLEwlVcEf2zL5i5eGpBXW",
+            "lhsExpr": "res.status",
+            "rhsExpr": "eq 201",
+            "rhsOperand": "201",
+            "operator": "eq",
+            "status": "pass"
+          },
+          {
+            "uid": "iyw513A0oLllMltA1MJ1I",
+            "lhsExpr": "res.body.name",
+            "rhsExpr": "eq Mhadhbi",
+            "rhsOperand": "Mhadhbi",
+            "operator": "eq",
+            "status": "pass"
+          },
+          {
+            "uid": "Qmld5-QRBrmzJnn3uPlY-",
+            "lhsExpr": "res.body.job",
+            "rhsExpr": "eq QA tester",
+            "rhsOperand": "QA tester",
+            "operator": "eq",
+            "status": "pass"
+          }
+        ],
+        "testResults": [
+          {
+            "description": "status code test",
+            "status": "pass",
+            "uid": "eFuRO9EJVoh1e8L_ywLI_"
+          },
+          {
+            "description": "name data type test",
+            "status": "pass",
+            "uid": "ET5-vAC5_wwJmW310885M"
+          },
+          {
+            "description": "name value test",
+            "status": "pass",
+            "uid": "38bZNU-RYVY7epaSw0KQs"
+          },
+          {
+            "description": "status text check test",
+            "status": "pass",
+            "uid": "gPdBkmLOsd7HW2SmEO8qo"
+          },
+          {
+            "description": "header value test",
+            "status": "pass",
+            "uid": "jmreDUn_XTI3YIOtvwE12"
+          }
+        ],
+        "preRequestTestResults": [],
+        "postResponseTestResults": [],
+        "shouldStopRunnerExecution": false,
+        "runDuration": 0.4567052,
+        "name": "CreateUser",
+        "path": "CreateUser.yml",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "GetSingleUser.yml"
+        },
+        "request": {
+          "method": "GET",
+          "url": "https://reqres.in/api/users/2",
+          "headers": {
+            "x-api-key": "********",
+            "Content-Type": "application/json"
+          }
+        },
+        "response": {
+          "status": 200,
+          "statusText": "OK",
+          "headers": {
+            "date": "Fri, 12 Jun 2026 13:52:58 GMT",
+            "content-type": "application/json; charset=utf-8",
+            "transfer-encoding": "chunked",
+            "connection": "close",
+            "access-control-allow-origin": "*",
+            "cache-control": "public, max-age=14400, s-maxage=60",
+            "cdn-cache-control": "max-age=60",
+            "cross-origin-opener-policy": "same-origin",
+            "cross-origin-resource-policy": "same-origin",
+            "etag": "W/\"309-xht0adi+2R3nyR08DqinqzlyEM0\"",
+            "nel": "{\"report_to\":\"heroku-nel\",\"response_headers\":[\"Via\"],\"max_age\":3600,\"success_fraction\":0.01,\"failure_fraction\":0.1}",
+            "origin-agent-cluster": "?1",
+            "ratelimit-limit": "20",
+            "ratelimit-policy": "20;w=60",
+            "ratelimit-remaining": "19",
+            "ratelimit-reset": "60",
+            "referrer-policy": "strict-origin-when-cross-origin",
+            "report-to": "{\"group\":\"heroku-nel\",\"endpoints\":[{\"url\":\"https://nel.heroku.com/reports?s=ZkcZ2yn7B9baDJiUM7b5joCs44ys4MUgliRSWjBWH2A%3D\\u0026sid=c4c9725f-1ab0-44d8-820f-430df2718e11\\u0026ts=1781231540\"}],\"max_age\":3600}",
+            "reporting-endpoints": "heroku-nel=\"https://nel.heroku.com/reports?s=ZkcZ2yn7B9baDJiUM7b5joCs44ys4MUgliRSWjBWH2A%3D&sid=c4c9725f-1ab0-44d8-820f-430df2718e11&ts=1781231540\"",
+            "server": "cloudflare",
+            "strict-transport-security": "max-age=31536000; includeSubDomains",
+            "via": "1.1 heroku-router",
+            "x-content-type-options": "nosniff",
+            "x-dns-prefetch-control": "off",
+            "x-download-options": "noopen",
+            "x-frame-options": "DENY",
+            "x-permitted-cross-domain-policies": "none",
+            "x-powered-by": "ReqRes.in - Deploy backends in 30 seconds",
+            "x-ratelimit-limit": "250",
+            "x-ratelimit-remaining": "244",
+            "x-ratelimit-reset": "1781308800",
+            "x-reqres-docs": "https://reqres.in",
+            "x-reqres-message": "This API is powered by ReqRes. Deploy your own backend in 30 seconds!",
+            "x-reqres-templates": "https://app.reqres.in/templates",
+            "x-reqres-tip": "Build with your own data, not fixtures - app.reqres.in/dashboard",
+            "x-reqres-trial": "true",
+            "x-reqres-trial-days-remaining": "14",
+            "x-reqres-trial-expires": "2026-06-26T02:22:36.841Z",
+            "x-reqres-upgrade": "https://app.reqres.in/upgrade",
+            "x-request-id": "52505b88-d663-3dbc-4fc4-5382f4d6ae89",
+            "x-robots-tag": "noindex, nofollow",
+            "x-xss-protection": "0",
+            "cf-cache-status": "REVALIDATED",
+            "cf-ray": "a0a956cf8b162a20-CDG"
+          },
+          "data": {
+            "data": {
+              "id": 2,
+              "email": "janet.weaver@reqres.in",
+              "first_name": "Janet",
+              "last_name": "Weaver",
+              "avatar": "https://reqres.in/img/faces/2-image.jpg"
+            },
+            "support": {
+              "url": "https://benhowdle.im/first-cto-playbook?utm_source=reqres&utm_medium=json&utm_campaign=referral",
+              "text": "Become a better CTO. A playbook of painful stories and practical advice from a two-time startup CTO."
+            },
+            "_meta": {
+              "powered_by": "ReqRes",
+              "docs_url": "https://app.reqres.in/documentation",
+              "upgrade_url": "https://app.reqres.in/upgrade",
+              "example_url": "https://app.reqres.in/examples/notes-app",
+              "variant": "v1_a",
+              "message": "Your data persists here. Add auth, logs, and custom schemas to build a real backend.",
+              "cta": {
+                "label": "See example app",
+                "url": "https://app.reqres.in/examples/notes-app"
+              },
+              "context": "legacy_success"
+            }
+          },
+          "url": "https://reqres.in/api/users/2",
+          "responseTime": 188,
+          "duration": 188,
+          "size": 777
+        },
+        "error": null,
+        "status": "pass",
+        "assertionResults": [
+          {
+            "uid": "2Sv1t9HqtGOmH5H8pTF-J",
+            "lhsExpr": "res.status",
+            "rhsExpr": "eq 200",
+            "rhsOperand": "200",
+            "operator": "eq",
+            "status": "pass"
+          }
+        ],
+        "testResults": [],
+        "preRequestTestResults": [],
+        "postResponseTestResults": [],
+        "shouldStopRunnerExecution": false,
+        "runDuration": 0.1940495,
+        "name": "GetSingleUser",
+        "path": "GetSingleUser.yml",
+        "iterationIndex": 0
+      }
+    ],
+    "summary": {
+      "totalRequests": 2,
+      "passedRequests": 2,
+      "failedRequests": 0,
+      "errorRequests": 0,
+      "skippedRequests": 0,
+      "totalAssertions": 4,
+      "passedAssertions": 4,
+      "failedAssertions": 0,
+      "totalTests": 5,
+      "passedTests": 5,
+      "failedTests": 0,
+      "totalPreRequestTests": 0,
+      "passedPreRequestTests": 0,
+      "failedPreRequestTests": 0,
+      "totalPostResponseTests": 0,
+      "passedPostResponseTests": 0,
+      "failedPostResponseTests": 0
+    }
+  }
+]

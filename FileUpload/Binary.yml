@@ -1,0 +1,21 @@
+info:
+  name: Binary
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: https://www.postman-echo.com/post
+  body:
+    type: file
+    data:
+      - filePath: image1.jpg
+        contentType: image/jpeg
+        selected: true
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

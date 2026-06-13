@@ -1,0 +1,60 @@
+opencollection: 1.0.0
+
+info:
+  name: Authorization Postman
+config:
+  proxy:
+    inherit: true
+    config:
+      protocol: http
+      hostname: ""
+      port: ""
+      auth:
+        username: ""
+        password: ""
+      bypassProxy: ""
+
+request:
+  headers:
+    - name: headerKey1
+      value: headerValue1
+    - name: headerKey2
+      value: headerValue2
+  auth:
+    type: basic
+    username: postman
+    password: password
+  scripts:
+    - type: before-request
+      code: |-
+        const headerValue1=req.getHeader("headerKey1"); 
+        console.log("headerValue1 is:",headerValue1);
+
+        const headerValue2=req.getHeader("headerKey2"); 
+        console.log("headerValue2 is:",headerValue2);
+
+        const headerValues=req.getHeaders(); 
+        console.log("headerValues are:",headerValues);
+    - type: after-response
+      code: |-
+        console.log("This is post response script"); 
+
+        const headerValue1=res.getHeader("connection");
+        console.log("headerValue1 is:",headerValue1); 
+
+        const headerValue2=res.getHeader("content-length"); 
+        console.log("headerValue2 is:",headerValue2); 
+
+        const headerValues=res.getHeaders(); 
+        console.log("headerValues are:",headerValues);
+    - type: tests
+      code: |-
+        test("status code test",function(){
+          expect(res.getStatus()).to.equal(200);
+        });
+bundled: false
+extensions:
+  bruno:
+    ignore:
+      - node_modules
+      - .git

@@ -1,0 +1,669 @@
+info:
+  name: Capture an authorised payment
+  type: http
+  seq: 4
+  tags:
+    - Modifications
+
+http:
+  method: POST
+  url: "{{baseUrl}}/payments/:paymentPspReference/captures"
+  headers:
+    - name: Idempotency-Key
+      value: 37ca9c97-d1d1-4c62-89e8-706891a563ed
+      description: A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).
+  params:
+    - name: paymentPspReference
+      value: ""
+      type: path
+      description: The [`pspReference`](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the payment that you want to capture.
+  body:
+    type: json
+    data: |-
+      {
+        "amount": {
+          "currency": "",
+          "value": 0
+        },
+        "lineItems": [
+          {
+            "amountExcludingTax": 0,
+            "amountIncludingTax": 0,
+            "brand": "",
+            "color": "",
+            "description": "",
+            "id": "",
+            "imageUrl": "",
+            "itemCategory": "",
+            "manufacturer": "",
+            "productUrl": "",
+            "quantity": 0,
+            "receiverEmail": "",
+            "size": "",
+            "sku": "",
+            "taxAmount": 0,
+            "taxPercentage": 0,
+            "upc": ""
+          }
+        ],
+        "merchantAccount": "",
+        "reference": "",
+        "splits": [
+          {
+            "account": "",
+            "amount": {
+              "currency": "",
+              "value": 0
+            },
+            "description": "",
+            "reference": "",
+            "type": "BalanceAccount"
+          }
+        ]
+      }
+  auth:
+    type: basic
+    username: "{{username}}"
+    password: "{{password}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: 200 Response
+    description: OK - the request has succeeded.
+    request:
+      url: "{{baseUrl}}/payments/:paymentPspReference/captures"
+      method: POST
+      headers:
+        - name: Idempotency-Key
+          value: 37ca9c97-d1d1-4c62-89e8-706891a563ed
+          description: A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).
+      params:
+        - name: paymentPspReference
+          value: ""
+          type: path
+          description: The [`pspReference`](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the payment that you want to capture.
+      body:
+        type: json
+        data: |-
+          {
+            "amount": {
+              "currency": "",
+              "value": 0
+            },
+            "lineItems": [
+              {
+                "amountExcludingTax": 0,
+                "amountIncludingTax": 0,
+                "brand": "",
+                "color": "",
+                "description": "",
+                "id": "",
+                "imageUrl": "",
+                "itemCategory": "",
+                "manufacturer": "",
+                "productUrl": "",
+                "quantity": 0,
+                "receiverEmail": "",
+                "size": "",
+                "sku": "",
+                "taxAmount": 0,
+                "taxPercentage": 0,
+                "upc": ""
+              }
+            ],
+            "merchantAccount": "",
+            "reference": "",
+            "splits": [
+              {
+                "account": "",
+                "amount": {
+                  "currency": "",
+                  "value": 0
+                },
+                "description": "",
+                "reference": "",
+                "type": "BalanceAccount"
+              }
+            ]
+          }
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "amount": {
+              "currency": "",
+              "value": 0
+            },
+            "lineItems": [
+              {
+                "amountExcludingTax": 0,
+                "amountIncludingTax": 0,
+                "brand": "",
+                "color": "",
+                "description": "",
+                "id": "",
+                "imageUrl": "",
+                "itemCategory": "",
+                "manufacturer": "",
+                "productUrl": "",
+                "quantity": 0,
+                "receiverEmail": "",
+                "size": "",
+                "sku": "",
+                "taxAmount": 0,
+                "taxPercentage": 0,
+                "upc": ""
+              }
+            ],
+            "merchantAccount": "",
+            "paymentPspReference": "",
+            "pspReference": "",
+            "reference": "",
+            "splits": [
+              {
+                "account": "",
+                "amount": {
+                  "currency": "",
+                  "value": 0
+                },
+                "description": "",
+                "reference": "",
+                "type": "BalanceAccount"
+              }
+            ],
+            "status": "received"
+          }
+  - name: 201 Response
+    description: Created - the request has been fulfilled and has resulted in one or more new resources being created.
+    request:
+      url: "{{baseUrl}}/payments/:paymentPspReference/captures"
+      method: POST
+      headers:
+        - name: Idempotency-Key
+          value: 37ca9c97-d1d1-4c62-89e8-706891a563ed
+          description: A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).
+      params:
+        - name: paymentPspReference
+          value: ""
+          type: path
+          description: The [`pspReference`](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the payment that you want to capture.
+      body:
+        type: json
+        data: |-
+          {
+            "amount": {
+              "currency": "",
+              "value": 0
+            },
+            "lineItems": [
+              {
+                "amountExcludingTax": 0,
+                "amountIncludingTax": 0,
+                "brand": "",
+                "color": "",
+                "description": "",
+                "id": "",
+                "imageUrl": "",
+                "itemCategory": "",
+                "manufacturer": "",
+                "productUrl": "",
+                "quantity": 0,
+                "receiverEmail": "",
+                "size": "",
+                "sku": "",
+                "taxAmount": 0,
+                "taxPercentage": 0,
+                "upc": ""
+              }
+            ],
+            "merchantAccount": "",
+            "reference": "",
+            "splits": [
+              {
+                "account": "",
+                "amount": {
+                  "currency": "",
+                  "value": 0
+                },
+                "description": "",
+                "reference": "",
+                "type": "BalanceAccount"
+              }
+            ]
+          }
+    response:
+      status: 201
+      statusText: Created
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "amount": {
+              "currency": "",
+              "value": 0
+            },
+            "lineItems": [
+              {
+                "amountExcludingTax": 0,
+                "amountIncludingTax": 0,
+                "brand": "",
+                "color": "",
+                "description": "",
+                "id": "",
+                "imageUrl": "",
+                "itemCategory": "",
+                "manufacturer": "",
+                "productUrl": "",
+                "quantity": 0,
+                "receiverEmail": "",
+                "size": "",
+                "sku": "",
+                "taxAmount": 0,
+                "taxPercentage": 0,
+                "upc": ""
+              }
+            ],
+            "merchantAccount": "",
+            "paymentPspReference": "",
+            "pspReference": "",
+            "reference": "",
+            "splits": [
+              {
+                "account": "",
+                "amount": {
+                  "currency": "",
+                  "value": 0
+                },
+                "description": "",
+                "reference": "",
+                "type": "BalanceAccount"
+              }
+            ],
+            "status": "received"
+          }
+  - name: Response code 400. Bad request.
+    request:
+      url: "{{baseUrl}}/payments/:paymentPspReference/captures"
+      method: POST
+      headers:
+        - name: Idempotency-Key
+          value: 37ca9c97-d1d1-4c62-89e8-706891a563ed
+          description: A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).
+      params:
+        - name: paymentPspReference
+          value: ""
+          type: path
+          description: The [`pspReference`](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the payment that you want to capture.
+      body:
+        type: json
+        data: |-
+          {
+            "amount": {
+              "currency": "",
+              "value": 0
+            },
+            "lineItems": [
+              {
+                "amountExcludingTax": 0,
+                "amountIncludingTax": 0,
+                "brand": "",
+                "color": "",
+                "description": "",
+                "id": "",
+                "imageUrl": "",
+                "itemCategory": "",
+                "manufacturer": "",
+                "productUrl": "",
+                "quantity": 0,
+                "receiverEmail": "",
+                "size": "",
+                "sku": "",
+                "taxAmount": 0,
+                "taxPercentage": 0,
+                "upc": ""
+              }
+            ],
+            "merchantAccount": "",
+            "reference": "",
+            "splits": [
+              {
+                "account": "",
+                "amount": {
+                  "currency": "",
+                  "value": 0
+                },
+                "description": "",
+                "reference": "",
+                "type": "BalanceAccount"
+              }
+            ]
+          }
+    response:
+      status: 400
+      statusText: Bad Request
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "errorCode": "702",
+            "errorType": "validation",
+            "message": "Unexpected input: \", expected: }",
+            "status": 400
+          }
+  - name: Response code 401. Unauthorized.
+    request:
+      url: "{{baseUrl}}/payments/:paymentPspReference/captures"
+      method: POST
+      headers:
+        - name: Idempotency-Key
+          value: 37ca9c97-d1d1-4c62-89e8-706891a563ed
+          description: A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).
+      params:
+        - name: paymentPspReference
+          value: ""
+          type: path
+          description: The [`pspReference`](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the payment that you want to capture.
+      body:
+        type: json
+        data: |-
+          {
+            "amount": {
+              "currency": "",
+              "value": 0
+            },
+            "lineItems": [
+              {
+                "amountExcludingTax": 0,
+                "amountIncludingTax": 0,
+                "brand": "",
+                "color": "",
+                "description": "",
+                "id": "",
+                "imageUrl": "",
+                "itemCategory": "",
+                "manufacturer": "",
+                "productUrl": "",
+                "quantity": 0,
+                "receiverEmail": "",
+                "size": "",
+                "sku": "",
+                "taxAmount": 0,
+                "taxPercentage": 0,
+                "upc": ""
+              }
+            ],
+            "merchantAccount": "",
+            "reference": "",
+            "splits": [
+              {
+                "account": "",
+                "amount": {
+                  "currency": "",
+                  "value": 0
+                },
+                "description": "",
+                "reference": "",
+                "type": "BalanceAccount"
+              }
+            ]
+          }
+    response:
+      status: 401
+      statusText: Unauthorized
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "errorCode": "000",
+            "errorType": "security",
+            "message": "HTTP Status Response - Unauthorized",
+            "status": 401
+          }
+  - name: Response code 403. Forbidden.
+    request:
+      url: "{{baseUrl}}/payments/:paymentPspReference/captures"
+      method: POST
+      headers:
+        - name: Idempotency-Key
+          value: 37ca9c97-d1d1-4c62-89e8-706891a563ed
+          description: A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).
+      params:
+        - name: paymentPspReference
+          value: ""
+          type: path
+          description: The [`pspReference`](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the payment that you want to capture.
+      body:
+        type: json
+        data: |-
+          {
+            "amount": {
+              "currency": "",
+              "value": 0
+            },
+            "lineItems": [
+              {
+                "amountExcludingTax": 0,
+                "amountIncludingTax": 0,
+                "brand": "",
+                "color": "",
+                "description": "",
+                "id": "",
+                "imageUrl": "",
+                "itemCategory": "",
+                "manufacturer": "",
+                "productUrl": "",
+                "quantity": 0,
+                "receiverEmail": "",
+                "size": "",
+                "sku": "",
+                "taxAmount": 0,
+                "taxPercentage": 0,
+                "upc": ""
+              }
+            ],
+            "merchantAccount": "",
+            "reference": "",
+            "splits": [
+              {
+                "account": "",
+                "amount": {
+                  "currency": "",
+                  "value": 0
+                },
+                "description": "",
+                "reference": "",
+                "type": "BalanceAccount"
+              }
+            ]
+          }
+    response:
+      status: 403
+      statusText: Forbidden
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "errorCode": "901",
+            "errorType": "security",
+            "message": "Invalid Merchant Account",
+            "pspReference": "881611827877203B",
+            "status": 403
+          }
+  - name: Response code 422. Unprocessable entity.
+    request:
+      url: "{{baseUrl}}/payments/:paymentPspReference/captures"
+      method: POST
+      headers:
+        - name: Idempotency-Key
+          value: 37ca9c97-d1d1-4c62-89e8-706891a563ed
+          description: A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).
+      params:
+        - name: paymentPspReference
+          value: ""
+          type: path
+          description: The [`pspReference`](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the payment that you want to capture.
+      body:
+        type: json
+        data: |-
+          {
+            "amount": {
+              "currency": "",
+              "value": 0
+            },
+            "lineItems": [
+              {
+                "amountExcludingTax": 0,
+                "amountIncludingTax": 0,
+                "brand": "",
+                "color": "",
+                "description": "",
+                "id": "",
+                "imageUrl": "",
+                "itemCategory": "",
+                "manufacturer": "",
+                "productUrl": "",
+                "quantity": 0,
+                "receiverEmail": "",
+                "size": "",
+                "sku": "",
+                "taxAmount": 0,
+                "taxPercentage": 0,
+                "upc": ""
+              }
+            ],
+            "merchantAccount": "",
+            "reference": "",
+            "splits": [
+              {
+                "account": "",
+                "amount": {
+                  "currency": "",
+                  "value": 0
+                },
+                "description": "",
+                "reference": "",
+                "type": "BalanceAccount"
+              }
+            ]
+          }
+    response:
+      status: 422
+      statusText: Unprocessable Entity
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "errorCode": "14_030",
+            "errorType": "validation",
+            "message": "Return URL is missing.",
+            "pspReference": "8816118280275544",
+            "status": 422
+          }
+  - name: Response code 500. Internal server error.
+    request:
+      url: "{{baseUrl}}/payments/:paymentPspReference/captures"
+      method: POST
+      headers:
+        - name: Idempotency-Key
+          value: 37ca9c97-d1d1-4c62-89e8-706891a563ed
+          description: A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).
+      params:
+        - name: paymentPspReference
+          value: ""
+          type: path
+          description: The [`pspReference`](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the payment that you want to capture.
+      body:
+        type: json
+        data: |-
+          {
+            "amount": {
+              "currency": "",
+              "value": 0
+            },
+            "lineItems": [
+              {
+                "amountExcludingTax": 0,
+                "amountIncludingTax": 0,
+                "brand": "",
+                "color": "",
+                "description": "",
+                "id": "",
+                "imageUrl": "",
+                "itemCategory": "",
+                "manufacturer": "",
+                "productUrl": "",
+                "quantity": 0,
+                "receiverEmail": "",
+                "size": "",
+                "sku": "",
+                "taxAmount": 0,
+                "taxPercentage": 0,
+                "upc": ""
+              }
+            ],
+            "merchantAccount": "",
+            "reference": "",
+            "splits": [
+              {
+                "account": "",
+                "amount": {
+                  "currency": "",
+                  "value": 0
+                },
+                "description": "",
+                "reference": "",
+                "type": "BalanceAccount"
+              }
+            ]
+          }
+    response:
+      status: 500
+      statusText: Internal Server Error
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "errorCode": "905",
+            "errorType": "configuration",
+            "message": "Payment details are not supported",
+            "pspReference": "8516091485743033",
+            "status": 500
+          }
+
+docs: |2-
+   Captures an authorised payment and returns a unique reference for this request. You get the outcome of the request asynchronously, in a [**CAPTURE** webhook](https://docs.adyen.com/online-payments/capture#capture-notification).
+
+  You can capture either the full authorised amount or a part of the authorised amount. By default, any unclaimed amount after a partial capture gets cancelled. This does not apply if you enabled multiple partial captures on your account and the payment method supports multiple partial captures. 
+
+  [Automatic capture](https://docs.adyen.com/online-payments/capture#automatic-capture) is the default setting for most payment methods. In these cases, you don't need to make capture requests. However, making capture requests for payments that are captured automatically does not result in double charges.
+
+  For more information, refer to [Capture](https://docs.adyen.com/online-payments/capture).

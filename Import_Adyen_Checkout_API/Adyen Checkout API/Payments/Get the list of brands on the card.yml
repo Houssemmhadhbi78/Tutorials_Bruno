@@ -1,0 +1,118 @@
+info:
+  name: Get the list of brands on the card
+  type: http
+  seq: 1
+  tags:
+    - Payments
+
+http:
+  method: POST
+  url: "{{baseUrl}}/cardDetails"
+  headers:
+    - name: Idempotency-Key
+      value: 37ca9c97-d1d1-4c62-89e8-706891a563ed
+      description: A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).
+  body:
+    type: json
+    data: |-
+      {
+        "cardNumber": "411111",
+        "merchantAccount": "YOUR_MERCHANT_ACCOUNT"
+      }
+  auth:
+    type: basic
+    username: "{{username}}"
+    password: "{{password}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: List of brands on the card
+    description: Example response when the card is co-branded.
+    request:
+      url: "{{baseUrl}}/cardDetails"
+      method: POST
+      headers:
+        - name: Idempotency-Key
+          value: 37ca9c97-d1d1-4c62-89e8-706891a563ed
+          description: A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).
+      body:
+        type: json
+        data: |-
+          {
+            "cardNumber": "411111",
+            "merchantAccount": "YOUR_MERCHANT_ACCOUNT"
+          }
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "brands": [
+              {
+                "supported": true,
+                "type": "visa"
+              },
+              {
+                "supported": true,
+                "type": "cartebancaire"
+              }
+            ]
+          }
+  - name: List of brands on the card when you specify your supported card brands
+    description: Example response when the card is co-branded, and you only support Visa.
+    request:
+      url: "{{baseUrl}}/cardDetails"
+      method: POST
+      headers:
+        - name: Idempotency-Key
+          value: 37ca9c97-d1d1-4c62-89e8-706891a563ed
+          description: A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).
+      body:
+        type: json
+        data: |-
+          {
+            "cardNumber": "411111",
+            "merchantAccount": "YOUR_MERCHANT_ACCOUNT",
+            "supportedBrands": [
+              "visa",
+              "mc",
+              "amex"
+            ]
+          }
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "brands": [
+              {
+                "supported": true,
+                "type": "visa"
+              },
+              {
+                "supported": false,
+                "type": "cartebancaire"
+              }
+            ]
+          }
+
+docs: |+
+  Send a request with at least the first 6 digits of the card number to get a response with an array of brands on the card. If you include [your supported brands](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/cardDetails__reqParam_supportedBrands) in the request, the response also tells you if you support each [brand that was identified](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/cardDetails__resParam_details).
+
+  If you have an API-only integration and collect card data, use this endpoint to find out if the shopper's card is co-branded. For co-branded cards, you must let the shopper choose the brand to pay with  if you support both brands.
+

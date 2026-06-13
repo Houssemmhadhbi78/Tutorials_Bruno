@@ -1,0 +1,29 @@
+info:
+  name: GenerateBearerToken
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: https://airportgap.com/api/tokens
+  body:
+    type: json
+    data: |-
+      {
+        "email":"houssem.mhadhbi@etik.com",
+        "password":"{{passwordEnvValue}}"
+
+      }
+
+runtime:
+  scripts:
+    - type: after-response
+      code: |-
+        bru.setGlobalEnvVar("globalToken", res.getBody().token);
+        bru.setEnvVar("EnvToken", res.getBody().token);
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

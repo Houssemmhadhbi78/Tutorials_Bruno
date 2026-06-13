@@ -1,0 +1,67 @@
+info:
+  name: GetCountryDetails
+  type: graphql
+  seq: 1
+
+graphql:
+  method: POST
+  url: https://countries.trevorblades.com/
+  body:
+    query: |-
+      query GetCountry {
+        france: country(code: "FR") {
+          name
+          native
+          capital
+          emoji
+          currency
+          languages {
+            code
+            name
+          }
+        }
+        
+        india: country(code: "IN") {
+          name
+          native
+          capital
+          emoji
+          currency
+          languages {
+            code
+            name
+          }
+        }
+
+        morocco: country(code: "MA") {
+        name
+        native
+        capital
+        emoji
+        currency
+        languages {
+          code
+          name
+        }
+      }
+
+      usa: country(code: "US") {
+        name
+        native
+        capital
+        emoji
+        currency
+        languages {
+          code
+          name
+        }
+      	}
+
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
