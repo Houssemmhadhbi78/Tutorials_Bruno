@@ -886,3 +886,67 @@ Note: Report will be generated under the artifacts section.
 This feature will allow developers to run the API tests ahead of deployment of application code, as 
 bruno can store the collection in file system and it can be source controlled and kept in same
 repo as that of application code.
+
+========================================================================================================
+Lesson 62 : https://www.youtube.com/watch?v=jUZ3aaJO6oM&list=PL9ucy3ZNv-8A4evd-c8EaFt-F3nHd8xFR&index=62
+GraphQL API Assertions & Tests | Bruno API Client 
+
+Assertions
+
+res.status 200
+res.body.data.country.name India
+
+Tests
+
+test("status code test", function() {
+expect(res.getStatus()).to.equal(200);
+});
+test("name data type test", function() {
+expect(res.getBody().data.country.name).to.be.a('string');
+});
+test("name value test", function() {
+expect(res.getBody().data.country.name).to.equal("India");
+});
+test("header value test", function() {
+expect(res.getHeader("connection")).to.equal("keep-alive");
+});
+
+========================================================================================================
+Lesson 63 : https://www.youtube.com/watch?v=OVXHNppyXT8&list=PL9ucy3ZNv-8A4evd-c8EaFt-F3nHd8xFR&index=63
+Dynamic Variables in Bruno.
+
+Dynamic variables enable you to generate and use random data in your testing workflow. Bruno uses the faker.js library to generate random data. 
+You can use these variables like any other variables in Bruno. The syntax to use dynamic variables is {{$randomData}}, and you can use
+them in the request body, authentication, parameters, and other fields.
+
+Note: Dynamic variables are case-sensitive and follow the camelCase convention.
+Version:2.1.0
+https://docs.usebruno.com/testing/script/dynamic-variables
+
+{{$randomFullName}}
+{{$randomJobTitle}}
+{{$randomEmail}}
+
+========================================================================================================
+Lesson 64 : https://www.youtube.com/watch?v=OVXHNppyXT8&list=PL9ucy3ZNv-8A4evd-c8EaFt-F3nHd8xFR&index=64
+Timeline View in Bruno.
+
+The Timeline tab provides detailed insights into the request’s response. It includes crucial information such as the body, authentication details, variables, parameters, headers, 
+and other necessary data to inspect and validate the expected response. It also saves the request/response history and can view the detailed network logs.
+
+========================================================================================================
+Lesson 65 : https://www.youtube.com/watch?v=_GmD95Fr1P0&list=PL9ucy3ZNv-8A4evd-c8EaFt-F3nHd8xFR&index=65
+Sharing Git synchronized collection via an embedded Fetch in Bruno button.
+
+Bruno allows you to share your Git-synchronized collection via an embedded “Fetch in Bruno” (FiB) button turning the import/cloning process into a single click! This button can be placed in websites, articles, and documentation, with support for HTML and Markdown formats. This feature helps you to share your collections in an easy and flexible way - meeting the user wherever they are.
+Once imported, the user now has a Git-synced collection and can seamlessly pull down new changes as updates are made.
+
+Pre Requisites:
+1.Bruno should be installed in your system.
+2.A collection that has been initialized as a Git repository either through the UI or from the CLI.
+
+Customizations
+You can replace the Fetch in Bruno title and logo with your preferred logo and name. 
+Simply follow the changes below in the markdown link:
+
+Make sure to keep everything else as it is.
