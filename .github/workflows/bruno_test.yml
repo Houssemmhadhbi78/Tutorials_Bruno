@@ -32,7 +32,7 @@ jobs:
       - name: Run Bruno Tests
         run: |
           cd HTMLReporter
-          bru run --reporter-html ../HTMLReporter/Results.html
+          bru run --env QA --reporter-html ../HTMLReporter/Results.html
           
       # Upload the html test report as an artifact
       - name: Upload Test Report in artifact location
