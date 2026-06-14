@@ -60,6 +60,45 @@ graphql:
       }
   auth: inherit
 
+runtime:
+  scripts:
+    - type: tests
+      code: |-
+        test("status code test", function() {
+        expect(res.getStatus()).to.equal(200);
+        });
+        test("name data type test", function() {
+        expect(res.getBody().data.india.name).to.be.a('string');
+        });
+        test("name value test", function() {
+        expect(res.getBody().data.france.name).to.equal("France");
+        });
+        test("name value test", function() {
+        expect(res.getBody().data.india.name).to.equal("India");
+        });
+        test("header value test", function() {
+        expect(res.getHeader("connection")).to.equal("keep-alive");
+        });
+  assertions:
+    - expression: res.status
+      operator: eq
+      value: "200"
+    - expression: res.body.data.india.name
+      operator: matches
+      value: .+
+    - expression: res.body.data.morocco.name
+      operator: matches
+      value: .+
+    - expression: res.body.data.usa.name
+      operator: matches
+      value: .+
+    - expression: res.body.data.france.name
+      operator: matches
+      value: .+
+    - expression: res.body.data.india.name
+      operator: eq
+      value: India
+
 settings:
   encodeUrl: true
   timeout: 0

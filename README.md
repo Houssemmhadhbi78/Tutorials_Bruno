@@ -44,3 +44,6 @@ JSONPlaceholder/
 ## Prerequisites
 
 No API key is required. JSONPlaceholder is a free public API intended for testing and prototyping.
+
+# Bruno API Testing
+[<img src="https://fetch.usebruno.com/button.svg" alt="Fetch in Bruno" style="width: 130px; height: 30px;" width="128" height="32">](https://fetch.usebruno.com?url=https%3A%2F%2Fgithub.com%2FHoussemmhadhbi78%2FTutorials_Bruno.git "target=_blank rel=noopener noreferrer")
